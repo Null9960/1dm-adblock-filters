@@ -1,21 +1,21 @@
 [Adblock Plus 2.0]
 ! Title: Ayon 1DM+ MEGA Ultimate Adult Ad Blocker
-! Last modified: 2026-04-13T15:27:05+03:00
+! Last modified: 2026-04-13T16:00:53+03:00
 ! Expires: 3 days (update frequency)
 ! Homepage: https://github.com/Null9960/1dm-adblock-filters
 ! License: CC BY-SA 4.0
-! Version: 202604131527
+! Version: 202604131600
 ! Sources: 7 specialized agents (networks, webcam/dating, malvertising, CDN, cosmetic/Arabic, mobile/push, casino)
-! Total rules after merge: 13511
-! Duplicates removed: 1567
+! Total rules after merge: 15232
+! Duplicates removed: 2040
 ! Built-in conflicts removed: 665
 !
 # ============================================================
 # Ayon MEGA Ultimate Adult Ad Blocker — Merged & Deduplicated
-# Generated: 2026-04-13 15:27 UTC
+# Generated: 2026-04-13 16:00 UTC
 # Sources: 7 agent files
-# Blocking: 10720, Hiding: 1695, Exceptions: 0
-# URL Patterns: 1096, Comments: 1996
+# Blocking: 11913, Hiding: 1984, Exceptions: 0
+# URL Patterns: 1335, Comments: 2834
 # ============================================================
 
 ! Title: 1DM Major Adult Ad Networks Blocklist
@@ -26,6 +26,7 @@
 ! Expires: 2 days (update frequency)
 ! =====
 ! PROTECTIVE FILTER — Blocks adult/pornographic advertising (pop-unders, banners, redirects, tracking)
+! Research: DNS enumeration, Netify, EasyList adult_adservers, ad network docs, CDN tracking
 ! ============================================
 ! SECTION 1: EXOCLICK NETWORK
 ! Main domains
@@ -43,7 +44,7 @@
 ||exodsp.com^
 ||exosrv.net^
 ||exosrv.org^
-! ExoClick subdomains — ad serving
+! ExoClick subdomains — ad serving (verified via DNS)
 ||ads.exoclick.com^
 ||ad.exoclick.com^
 ||a.exoclick.com^
@@ -83,7 +84,7 @@
 ||js.exosrv.com^
 ||widget.exosrv.com^
 ||embed.exosrv.com^
-! ExoClick wildcard letter subdomains (serving ads via a-z)
+! ExoClick letter subdomains (a-z on both domains)
 ||b.exoclick.com^
 ||c.exoclick.com^
 ||d.exoclick.com^
@@ -134,7 +135,7 @@
 ||x.exosrv.com^
 ||y.exosrv.com^
 ||z.exosrv.com^
-! ExoClick numeric/variant subdomains
+! ExoClick numeric subdomains
 ||0.exoclick.com^
 ||1.exoclick.com^
 ||2.exoclick.com^
@@ -155,11 +156,32 @@
 ||7.exosrv.com^
 ||8.exosrv.com^
 ||9.exosrv.com^
+! ExoClick numbered ad subdomains
+||ad1.exoclick.com^
+||ad2.exoclick.com^
+||ad3.exoclick.com^
+||ad4.exoclick.com^
+||ad5.exoclick.com^
+||ad6.exoclick.com^
+||ad7.exoclick.com^
+||ad8.exoclick.com^
+||ad9.exoclick.com^
+||ad10.exoclick.com^
+||ad1.exosrv.com^
+||ad2.exosrv.com^
+||ad3.exosrv.com^
+||ad4.exosrv.com^
+||ad5.exosrv.com^
+||ad6.exosrv.com^
+||ad7.exosrv.com^
+||ad8.exosrv.com^
+||ad9.exosrv.com^
+||ad10.exosrv.com^
 ! ExoClick CDN77 delivery endpoints
 ||rsc.cdn77.org^$domain=exoclick.com|exosrv.com
 ! ExoClick infrastructure (ab1n.net — OVH backend)
 ||ab1n.net^$third-party
-! ExoClick URL patterns
+! ExoClick URL path patterns
 /exoclick/*$script,third-party
 /exosrv/*$script,third-party
 /exoclick.js|$script,third-party
@@ -169,12 +191,27 @@
 ||exosrv.com^$popup
 /exoclick/$image,third-party
 /exosrv/$image,third-party
+/exoclick/$subdocument,third-party
+/exosrv/$subdocument,third-party
+/exoclick/*$popup
+/exosrv/*$popup
+/exo^$xmlhttprequest,third-party,domain=exoclick.com|exosrv.com
+! ExoClick specific paths
+! ExoClick third-party blocking
+||exoclick.com^$script,third-party
+||exosrv.com^$script,third-party
+||exoclick.com^$image,third-party
+||exosrv.com^$image,third-party
+||exoclick.com^$subdocument,third-party
+||exosrv.com^$subdocument,third-party
 ! ExoClick element hiding
 ##.exo-ad
 ##.exoclick-ad
 ##.exo-banner
 ##.exo-widget
 ##.exo-container
+##.exo-ad-container
+##.exo-ad-wrapper
 ##div[class*="exoclick"]
 ##div[id*="exoclick"]
 ##iframe[src*="exoclick.com"]
@@ -206,6 +243,14 @@
 ||js.trafficjunky.com^
 ||widget.trafficjunky.com^
 ||embed.trafficjunky.com^
+||media.trafficjunky.com^
+||img.trafficjunky.com^
+||delivery.trafficjunky.com^
+||pop.trafficjunky.com^
+||popunder.trafficjunky.com^
+||redirect.trafficjunky.com^
+||secure.trafficjunky.com^
+||ssl.trafficjunky.com^
 ||ads.trafficjunky.net^
 ||ad.trafficjunky.net^
 ||cdn.trafficjunky.net^
@@ -222,7 +267,12 @@
 ||video.trafficjunky.net^
 ||rtb.trafficjunky.net^
 ||pixel.trafficjunky.net^
-! TrafficJunky wildcard letter subdomains
+||js.trafficjunky.net^
+||widget.trafficjunky.net^
+||embed.trafficjunky.net^
+||media.trafficjunky.net^
+||delivery.trafficjunky.net^
+! TrafficJunky letter subdomains
 ||a.trafficjunky.com^
 ||b.trafficjunky.com^
 ||c.trafficjunky.com^
@@ -275,7 +325,23 @@
 ||x.trafficjunky.net^
 ||y.trafficjunky.net^
 ||z.trafficjunky.net^
-! TrafficJunky / MindGeek / Aylo ad infrastructure
+! TrafficJunky numbered ad subdomains
+||ad1.trafficjunky.com^
+||ad2.trafficjunky.com^
+||ad3.trafficjunky.com^
+||ad4.trafficjunky.com^
+||ad5.trafficjunky.com^
+||ad6.trafficjunky.com^
+||ad7.trafficjunky.com^
+||ad8.trafficjunky.com^
+||ad9.trafficjunky.com^
+||ad10.trafficjunky.com^
+||ad1.trafficjunky.net^
+||ad2.trafficjunky.net^
+||ad3.trafficjunky.net^
+||ad4.trafficjunky.net^
+||ad5.trafficjunky.net^
+! TrafficJunky / MindGeek / Aylo ad infrastructure — phncdn.com
 ||phncdn.com^$third-party
 ||phncdn.com^$popup
 ||cdn.phncdn.com^$third-party
@@ -311,6 +377,11 @@
 ||x.phncdn.com^$third-party
 ||y.phncdn.com^$third-party
 ||z.phncdn.com^$third-party
+||ad1.phncdn.com^
+||ad2.phncdn.com^
+||ad3.phncdn.com^
+||ad4.phncdn.com^
+||ad5.phncdn.com^
 ! hjflm.com — TrafficJunky redirect domain
 ||hjflm.com^$popup
 ||hjflm.com^$third-party
@@ -349,11 +420,30 @@
 ||trafficjunky.com^$popup
 ||trafficjunky.net^$popup
 /hjflm/*$script,third-party
+/trafficjunky/$image,third-party
+/trafficjunky/$subdocument,third-party
+/hjflm/$popup
+! TrafficJunky specific paths
+! TrafficJunky third-party blocking
+||trafficjunky.com^$script,third-party
+||trafficjunky.net^$script,third-party
+||trafficjunky.com^$image,third-party
+||trafficjunky.net^$image,third-party
+||trafficjunky.com^$subdocument,third-party
+||trafficjunky.net^$subdocument,third-party
+||phncdn.com^$script,third-party
+||phncdn.com^$image,third-party
+||phncdn.com^$subdocument,third-party
+||hjflm.com^$script,third-party
+||hjflm.com^$image,third-party
+||hjflm.com^$subdocument,third-party
 ! TrafficJunky element hiding
 ##.tj-ad
 ##.trafficjunky-ad
 ##.tj-banner
 ##.tj-widget
+##.tj-ad-container
+##.tj-ad-wrapper
 ##div[class*="trafficjunky"]
 ##div[id*="trafficjunky"]
 ##iframe[src*="trafficjunky.com"]
@@ -384,6 +474,14 @@
 ||video.trafficfactory.biz^
 ||rtb.trafficfactory.biz^
 ||pixel.trafficfactory.biz^
+||js.trafficfactory.biz^
+||widget.trafficfactory.biz^
+||embed.trafficfactory.biz^
+||media.trafficfactory.biz^
+||img.trafficfactory.biz^
+||delivery.trafficfactory.biz^
+||pop.trafficfactory.biz^
+||popunder.trafficfactory.biz^
 ||ads.trafficfactory.com^
 ||ad.trafficfactory.com^
 ||cdn.trafficfactory.com^
@@ -400,7 +498,12 @@
 ||video.trafficfactory.com^
 ||rtb.trafficfactory.com^
 ||pixel.trafficfactory.com^
-! TrafficFactory wildcard letter subdomains
+||js.trafficfactory.com^
+||widget.trafficfactory.com^
+||embed.trafficfactory.com^
+||media.trafficfactory.com^
+||delivery.trafficfactory.com^
+! TrafficFactory letter subdomains
 ||a.trafficfactory.biz^
 ||b.trafficfactory.biz^
 ||c.trafficfactory.biz^
@@ -453,14 +556,38 @@
 ||x.trafficfactory.com^
 ||y.trafficfactory.com^
 ||z.trafficfactory.com^
+! TrafficFactory numbered subdomains
+||ad1.trafficfactory.biz^
+||ad2.trafficfactory.biz^
+||ad3.trafficfactory.biz^
+||ad4.trafficfactory.biz^
+||ad5.trafficfactory.biz^
+||ad1.trafficfactory.com^
+||ad2.trafficfactory.com^
+||ad3.trafficfactory.com^
+||ad4.trafficfactory.com^
+||ad5.trafficfactory.com^
 ! TrafficFactory URL patterns
 /trafficfactory/*$script,third-party
 /trafficfactory.js|$script,third-party
 ||trafficfactory.biz^$popup
+/trafficfactory/$image,third-party
+/trafficfactory/$subdocument,third-party
+! TrafficFactory specific paths
+! TrafficFactory third-party blocking
+||trafficfactory.biz^$script,third-party
+||trafficfactory.com^$script,third-party
+||trafficfactory.biz^$image,third-party
+||trafficfactory.com^$image,third-party
+||trafficfactory.biz^$subdocument,third-party
+||trafficfactory.com^$subdocument,third-party
 ! TrafficFactory element hiding
 ##.tf-ad
 ##.trafficfactory-ad
 ##.tf-banner
+##.tf-widget
+##.tf-ad-container
+##.tf-ad-wrapper
 ##div[class*="trafficfactory"]
 ##div[id*="trafficfactory"]
 ##iframe[src*="trafficfactory.biz"]
@@ -473,7 +600,7 @@
 ||juicyads.io^
 ||adnetwork.net^
 ||adxpansion.com^
-! JuicyAds subdomains
+! JuicyAds subdomains (verified: ads.juicyads.com, adserver.juicyads.com)
 ||ads.juicyads.com^
 ||adserver.juicyads.com^
 ||cdn.juicyads.com^
@@ -495,7 +622,12 @@
 ||widget.juicyads.com^
 ||embed.juicyads.com^
 ||media.juicyads.com^
-! JuicyAds wildcard letter subdomains
+||delivery.juicyads.com^
+||pop.juicyads.com^
+||popunder.juicyads.com^
+||redirect.juicyads.com^
+||secure.juicyads.com^
+! JuicyAds letter subdomains
 ||a.juicyads.com^
 ||b.juicyads.com^
 ||c.juicyads.com^
@@ -555,6 +687,17 @@
 ||x.juicyads.me^
 ||y.juicyads.me^
 ||z.juicyads.me^
+! JuicyAds numbered subdomains
+||ad1.juicyads.com^
+||ad2.juicyads.com^
+||ad3.juicyads.com^
+||ad4.juicyads.com^
+||ad5.juicyads.com^
+||ad1.juicyads.me^
+||ad2.juicyads.me^
+||ad3.juicyads.me^
+||ad4.juicyads.me^
+||ad5.juicyads.me^
 ! JuicyAds infrastructure (mjedge.net CDN)
 ||mjedge.net^$third-party
 ! JuicyAds URL patterns
@@ -562,17 +705,32 @@
 /juicyads.js|$script,third-party
 ||juicyads.com^$popup
 ||juicyads.me^$popup
+/juicyads/$image,third-party
+/juicyads/$subdocument,third-party
 /adnetwork/*$script,third-party,domain=~adnetwork.net
+! JuicyAds specific paths
+! JuicyAds third-party blocking
+||juicyads.com^$script,third-party
+||juicyads.me^$script,third-party
+||juicyads.com^$image,third-party
+||juicyads.me^$image,third-party
+||juicyads.com^$subdocument,third-party
+||juicyads.me^$subdocument,third-party
+||adnetwork.net^$script,third-party
+||adxpansion.com^$third-party
 ! JuicyAds element hiding
 ##.juicy-ad
 ##.juicyads-ad
 ##.juicy-banner
 ##.juicy-widget
+##.ja-ad-container
+##.ja-ad-wrapper
 ##div[class*="juicyads"]
 ##div[id*="juicyads"]
 ##iframe[src*="juicyads.com"]
 ##iframe[src*="juicyads.me"]
 ##a[href*="juicyads.com"]
+##a[href*="juicyads.me"]
 ! SECTION 5: HILLTOPADS NETWORK
 ||hilltopads.com^
 ||hilltopads.net^
@@ -612,8 +770,7 @@
 ||popunder.hilltopads.com^
 ||redirect.hilltopads.com^
 ||secure.hilltopads.com^
-||ssl.hilltopads.com^
-! HillTopAds wildcard letter subdomains
+! HillTopAds letter subdomains
 ||a.hilltopads.com^
 ||b.hilltopads.com^
 ||c.hilltopads.com^
@@ -640,16 +797,31 @@
 ||x.hilltopads.com^
 ||y.hilltopads.com^
 ||z.hilltopads.com^
+! HillTopAds numbered subdomains
+||ad1.hilltopads.com^
+||ad2.hilltopads.com^
+||ad3.hilltopads.com^
+||ad4.hilltopads.com^
+||ad5.hilltopads.com^
 ! HillTopAds URL patterns
 /hilltopads/*$script,third-party
 /hilltopads.js|$script,third-party
 ||hilltopads.com^$popup
 /htaservices/*$script,third-party
+/hilltopads/$image,third-party
+/hilltopads/$subdocument,third-party
+! HillTopAds specific paths
+! HillTopAds third-party blocking
+||hilltopads.com^$script,third-party
+||hilltopads.com^$image,third-party
+||hilltopads.com^$subdocument,third-party
 ! HillTopAds element hiding
 ##.hta-ad
 ##.hilltopads-ad
 ##.hta-banner
 ##.hta-widget
+##.hta-ad-container
+##.hta-ad-wrapper
 ##div[class*="hilltopads"]
 ##div[id*="hilltopads"]
 ##iframe[src*="hilltopads.com"]
@@ -689,7 +861,7 @@
 ||popunder.clickadu.com^
 ||redirect.clickadu.com^
 ||secure.clickadu.com^
-! ClickAdu wildcard letter subdomains
+! ClickAdu letter subdomains
 ||a.clickadu.com^
 ||b.clickadu.com^
 ||c.clickadu.com^
@@ -749,6 +921,17 @@
 ||x.clickadu.net^
 ||y.clickadu.net^
 ||z.clickadu.net^
+! ClickAdu numbered subdomains
+||ad1.clickadu.com^
+||ad2.clickadu.com^
+||ad3.clickadu.com^
+||ad4.clickadu.com^
+||ad5.clickadu.com^
+||ad1.clickadu.net^
+||ad2.clickadu.net^
+||ad3.clickadu.net^
+||ad4.clickadu.net^
+||ad5.clickadu.net^
 ! ClickAdilla (ClickAdu sister network)
 ||ads.clickadilla.com^
 ||cdn.clickadilla.com^
@@ -787,15 +970,31 @@
 ||clickadu.com^$popup
 ||clickadu.net^$popup
 /clickadilla/*$script,third-party
+/clickadu/$image,third-party
+/clickadu/$subdocument,third-party
+! ClickAdu specific paths
+! ClickAdu third-party blocking
+||clickadu.com^$script,third-party
+||clickadu.net^$script,third-party
+||clickadu.com^$image,third-party
+||clickadu.net^$image,third-party
+||clickadu.com^$subdocument,third-party
+||clickadu.net^$subdocument,third-party
+||clickadilla.com^$script,third-party
+||clickadilla.com^$image,third-party
+||clickadilla.com^$subdocument,third-party
 ! ClickAdu element hiding
 ##.cadu-ad
 ##.clickadu-ad
 ##.cadu-banner
 ##.cadu-widget
+##.cadu-ad-container
+##.cadu-ad-wrapper
 ##div[class*="clickadu"]
 ##div[id*="clickadu"]
 ##iframe[src*="clickadu.com"]
 ##iframe[src*="clickadu.net"]
+##a[href*="clickadu.com"]
 ! SECTION 7: EROADVERTISING NETWORK
 ||ero-advertising.com^
 ||eroadvertising.com^
@@ -805,7 +1004,7 @@
 ||eroads.com^
 ||ero-ad.net^
 ||go.ero-advertising.com^
-! EroAdvertising subdomains
+! EroAdvertising subdomains (verified: ads/cdn/serving → go.ero-advertising.com)
 ||ads.eroadvertising.com^
 ||ad.eroadvertising.com^
 ||cdn.eroadvertising.com^
@@ -828,7 +1027,9 @@
 ||media.eroadvertising.com^
 ||img.eroadvertising.com^
 ||delivery.eroadvertising.com^
-! EroAdvertising wildcard letter subdomains
+||pop.eroadvertising.com^
+||popunder.eroadvertising.com^
+! EroAdvertising letter subdomains (verified: a-z → go.ero-advertising.com)
 ||a.eroadvertising.com^
 ||b.eroadvertising.com^
 ||c.eroadvertising.com^
@@ -888,21 +1089,43 @@
 ||x.ero-advertising.com^
 ||y.ero-advertising.com^
 ||z.ero-advertising.com^
+! EroAdvertising numbered subdomains
+||ad1.eroadvertising.com^
+||ad2.eroadvertising.com^
+||ad3.eroadvertising.com^
+||ad4.eroadvertising.com^
+||ad5.eroadvertising.com^
+||ad1.ero-advertising.com^
+||ad2.ero-advertising.com^
+||ad3.ero-advertising.com^
 ! EroAdvertising URL patterns
 /eroadvertising/*$script,third-party
 /ero-advertising/*$script,third-party
 /eroad.js|$script,third-party
 ||eroadvertising.com^$popup
 ||ero-advertising.com^$popup
+/eroadvertising/$image,third-party
+/eroadvertising/$subdocument,third-party
+! EroAdvertising specific paths
+! EroAdvertising third-party blocking
+||eroadvertising.com^$script,third-party
+||ero-advertising.com^$script,third-party
+||eroadvertising.com^$image,third-party
+||ero-advertising.com^$image,third-party
+||eroadvertising.com^$subdocument,third-party
+||ero-advertising.com^$subdocument,third-party
 ! EroAdvertising element hiding
 ##.ero-ad
 ##.eroadvertising-ad
 ##.ero-banner
 ##.ero-widget
+##.ero-ad-container
+##.ero-ad-wrapper
 ##div[class*="eroadvertising"]
 ##div[id*="eroadvertising"]
 ##iframe[src*="eroadvertising.com"]
 ##iframe[src*="ero-advertising.com"]
+##a[href*="eroadvertising.com"]
 ! SECTION 8: ADSTERRA NETWORK (adult segments)
 ||adsterra.com^
 ||adsterra.net^
@@ -913,7 +1136,7 @@
 ||adsterratools.com^
 ||ssterra.com^
 ||megacpm.com^
-! Adsterra subdomains — ad serving
+! Adsterra subdomains (verified: ads.adsterra.com → multiple IPs)
 ||ads.adsterra.com^
 ||ad.adsterra.com^
 ||r.adsterra.com^
@@ -942,7 +1165,7 @@
 ||popunder.adsterra.com^
 ||redirect.adsterra.com^
 ||secure.adsterra.com^
-! Adsterra wildcard letter subdomains
+! Adsterra letter subdomains
 ||a.adsterra.com^
 ||b.adsterra.com^
 ||c.adsterra.com^
@@ -968,13 +1191,50 @@
 ||x.adsterra.com^
 ||y.adsterra.com^
 ||z.adsterra.com^
+! Adsterra numbered subdomains
+||ad1.adsterra.com^
+||ad2.adsterra.com^
+||ad3.adsterra.com^
+||ad4.adsterra.com^
+||ad5.adsterra.com^
+||ad6.adsterra.com^
+||ad7.adsterra.com^
+||ad8.adsterra.com^
+||ad9.adsterra.com^
+||ad10.adsterra.com^
 ! Adsterra subdomains on adsterra.net
 ||ads.adsterra.net^
 ||cdn.adsterra.net^
 ||static.adsterra.net^
 ||serving.adsterra.net^
 ||tracking.adsterra.net^
-! Adsterra tools / social-exat tracking
+||a.adsterra.net^
+||b.adsterra.net^
+||c.adsterra.net^
+||d.adsterra.net^
+||e.adsterra.net^
+||f.adsterra.net^
+||g.adsterra.net^
+||h.adsterra.net^
+||i.adsterra.net^
+||j.adsterra.net^
+||k.adsterra.net^
+||l.adsterra.net^
+||m.adsterra.net^
+||n.adsterra.net^
+||o.adsterra.net^
+||p.adsterra.net^
+||q.adsterra.net^
+||r.adsterra.net^
+||s.adsterra.net^
+||t.adsterra.net^
+||u.adsterra.net^
+||v.adsterra.net^
+||w.adsterra.net^
+||x.adsterra.net^
+||y.adsterra.net^
+||z.adsterra.net^
+! Adsterra tools / tracking domains
 ||ads.adsterratools.com^
 ||cdn.adsterratools.com^
 ||static.adsterratools.com^
@@ -985,11 +1245,26 @@
 /adsterratools/*$script,third-party
 /ssterra/*$script,third-party
 /megacpm/*$script,third-party
+/adsterra/$image,third-party
+/adsterra/$subdocument,third-party
+! Adsterra specific paths
+! Adsterra third-party blocking
+||adsterra.com^$script,third-party
+||adsterra.net^$script,third-party
+||adsterra.com^$image,third-party
+||adsterra.net^$image,third-party
+||adsterra.com^$subdocument,third-party
+||adsterra.net^$subdocument,third-party
+||adsterratools.com^$script,third-party
+||ssterra.com^$third-party
+||megacpm.com^$third-party
 ! Adsterra element hiding
 ##.ast-ad
 ##.adsterra-ad
 ##.ast-banner
 ##.ast-widget
+##.ast-ad-container
+##.ast-ad-wrapper
 ##div[class*="adsterra"]
 ##div[id*="adsterra"]
 ##iframe[src*="adsterra.com"]
@@ -1003,7 +1278,7 @@
 ||propellerads.info^
 ||propellerp.com^
 ||apropeller.com^
-! PropellerAds subdomains — ad serving
+! PropellerAds subdomains (verified: ad.propellerads.com → 139.45.195.6)
 ||ads.propellerads.com^
 ||ad.propellerads.com^
 ||cdn.propellerads.com^
@@ -1031,7 +1306,7 @@
 ||redirect.propellerads.com^
 ||secure.propellerads.com^
 ||mssdk.propellerads.com^
-! PropellerAds wildcard letter subdomains
+! PropellerAds letter subdomains
 ||a.propellerads.com^
 ||b.propellerads.com^
 ||c.propellerads.com^
@@ -1090,11 +1365,46 @@
 ||x.propellerads.net^
 ||y.propellerads.net^
 ||z.propellerads.net^
+! PropellerAds numbered subdomains
+||ad1.propellerads.com^
+||ad2.propellerads.com^
+||ad3.propellerads.com^
+||ad4.propellerads.com^
+||ad5.propellerads.com^
+||ad1.propellerads.net^
+||ad2.propellerads.net^
+||ad3.propellerads.net^
 ! PropellerAds subdomains on propellerp.com
 ||ads.propellerp.com^
 ||cdn.propellerp.com^
 ||serving.propellerp.com^
 ||tracking.propellerp.com^
+||a.propellerp.com^
+||b.propellerp.com^
+||c.propellerp.com^
+||d.propellerp.com^
+||e.propellerp.com^
+||f.propellerp.com^
+||g.propellerp.com^
+||h.propellerp.com^
+||i.propellerp.com^
+||j.propellerp.com^
+||k.propellerp.com^
+||l.propellerp.com^
+||m.propellerp.com^
+||n.propellerp.com^
+||o.propellerp.com^
+||p.propellerp.com^
+||q.propellerp.com^
+||r.propellerp.com^
+||s.propellerp.com^
+||t.propellerp.com^
+||u.propellerp.com^
+||v.propellerp.com^
+||w.propellerp.com^
+||x.propellerp.com^
+||y.propellerp.com^
+||z.propellerp.com^
 ! PropellerAds known tracking/redirect domains
 ||auctionland.store^
 ||tbitcc.store^
@@ -1108,11 +1418,26 @@
 ||propellerp.com^$popup
 /propush/*$script,third-party
 /onclick/*$script,third-party,domain=propellerads.com
+/propellerads/$image,third-party
+/propellerads/$subdocument,third-party
+! PropellerAds specific paths
+! PropellerAds third-party blocking
+||propellerads.com^$script,third-party
+||propellerads.net^$script,third-party
+||propellerp.com^$script,third-party
+||propellerads.com^$image,third-party
+||propellerads.net^$image,third-party
+||propellerp.com^$image,third-party
+||propellerads.com^$subdocument,third-party
+||propellerads.net^$subdocument,third-party
+||propellerp.com^$subdocument,third-party
 ! PropellerAds element hiding
 ##.pa-ad
 ##.propellerads-ad
 ##.pa-banner
 ##.pa-widget
+##.pa-ad-container
+##.pa-ad-wrapper
 ##div[class*="propellerads"]
 ##div[id*="propellerads"]
 ##iframe[src*="propellerads.com"]
@@ -1122,7 +1447,7 @@
 ||popads.com^
 ||popads.org^
 ||popads.io^
-! PopAds subdomains
+! PopAds subdomains (verified: static.popads.net → CDN77, serve.popads.net, api.popads.net)
 ||ads.popads.net^
 ||ad.popads.net^
 ||cdn.popads.net^
@@ -1149,7 +1474,7 @@
 ||popunder.popads.net^
 ||redirect.popads.net^
 ||secure.popads.net^
-! PopAds wildcard letter subdomains
+! PopAds letter subdomains
 ||a.popads.net^
 ||b.popads.net^
 ||c.popads.net^
@@ -1176,12 +1501,37 @@
 ||x.popads.net^
 ||y.popads.net^
 ||z.popads.net^
-! PopAds CDN77 infrastructure
-||popads.net^$popup
+! PopAds numbered subdomains
+||ad1.popads.net^
+||ad2.popads.net^
+||ad3.popads.net^
+||ad4.popads.net^
+||ad5.popads.net^
+||0.popads.net^
+||1.popads.net^
+||2.popads.net^
+||3.popads.net^
+||4.popads.net^
+||5.popads.net^
+||6.popads.net^
+||7.popads.net^
+||8.popads.net^
+||9.popads.net^
 ! PopAds URL patterns
 /popads/*$script,third-party
 /popads.js|$script,third-party
 /popunder.$script,third-party
+||popads.net^$popup
+/popads/$image,third-party
+/popads/$subdocument,third-party
+! PopAds specific paths
+! PopAds third-party blocking
+||popads.net^$script,third-party
+||popads.net^$image,third-party
+||popads.net^$subdocument,third-party
+||popads.com^$third-party
+||popads.org^$third-party
+||popads.io^$third-party
 ! PopAds element hiding
 ##.pa-popad
 ##.popads-ad
@@ -1194,7 +1544,7 @@
 ||popcash.com^
 ||popcash.org^
 ||popcash.io^
-! PopCash subdomains
+! PopCash subdomains (verified: cdn.popcash.net → BunnyCDN, api.popcash.net → AWS ELB)
 ||ads.popcash.net^
 ||ad.popcash.net^
 ||cdn.popcash.net^
@@ -1221,7 +1571,7 @@
 ||popunder.popcash.net^
 ||redirect.popcash.net^
 ||secure.popcash.net^
-! PopCash wildcard letter subdomains
+! PopCash letter subdomains
 ||a.popcash.net^
 ||b.popcash.net^
 ||c.popcash.net^
@@ -1248,6 +1598,22 @@
 ||x.popcash.net^
 ||y.popcash.net^
 ||z.popcash.net^
+! PopCash numbered subdomains
+||ad1.popcash.net^
+||ad2.popcash.net^
+||ad3.popcash.net^
+||ad4.popcash.net^
+||ad5.popcash.net^
+||0.popcash.net^
+||1.popcash.net^
+||2.popcash.net^
+||3.popcash.net^
+||4.popcash.net^
+||5.popcash.net^
+||6.popcash.net^
+||7.popcash.net^
+||8.popcash.net^
+||9.popcash.net^
 ! PopCash CDN infrastructure (b-cdn.net BunnyCDN)
 ||popcash-cdn.b-cdn.net^
 ||popcash-static.b-cdn.net^
@@ -1255,6 +1621,16 @@
 /popcash/*$script,third-party
 /popcash.js|$script,third-party
 ||popcash.net^$popup
+/popcash/$image,third-party
+/popcash/$subdocument,third-party
+! PopCash specific paths
+! PopCash third-party blocking
+||popcash.net^$script,third-party
+||popcash.net^$image,third-party
+||popcash.net^$subdocument,third-party
+||popcash.com^$third-party
+||popcash.org^$third-party
+||popcash.io^$third-party
 ! PopCash element hiding
 ##.pc-ad
 ##.popcash-ad
@@ -1268,7 +1644,7 @@
 ||plugrush.org^
 ||plugrush.io^
 ||prscripts.com^
-! PlugRush subdomains
+! PlugRush subdomains (verified: d.plugrush.com → prscripts.com, cdn → alt-r1cd.com)
 ||ads.plugrush.com^
 ||ad.plugrush.com^
 ||cdn.plugrush.com^
@@ -1294,7 +1670,7 @@
 ||pop.plugrush.com^
 ||popunder.plugrush.com^
 ||redirect.plugrush.com^
-! PlugRush wildcard letter subdomains
+! PlugRush letter subdomains
 ||a.plugrush.com^
 ||b.plugrush.com^
 ||c.plugrush.com^
@@ -1321,6 +1697,12 @@
 ||x.plugrush.com^
 ||y.plugrush.com^
 ||z.plugrush.com^
+! PlugRush numbered subdomains
+||ad1.plugrush.com^
+||ad2.plugrush.com^
+||ad3.plugrush.com^
+||ad4.plugrush.com^
+||ad5.plugrush.com^
 ! PlugRush infrastructure — prscripts.com serving scripts
 ||prscripts.com^$third-party
 ||ads.prscripts.com^
@@ -1335,11 +1717,23 @@
 /plugrush.js|$script,third-party
 /prscripts/*$script,third-party
 ||plugrush.com^$popup
+/plugrush/$image,third-party
+/plugrush/$subdocument,third-party
+! PlugRush specific paths
+! PlugRush third-party blocking
+||plugrush.com^$script,third-party
+||plugrush.com^$image,third-party
+||plugrush.com^$subdocument,third-party
+||plugrush.net^$third-party
+||plugrush.org^$third-party
+||plugrush.io^$third-party
 ! PlugRush element hiding
 ##.pr-ad
 ##.plugrush-ad
 ##.pr-banner
 ##.pr-widget
+##.pr-ad-container
+##.pr-ad-wrapper
 ##div[class*="plugrush"]
 ##div[id*="plugrush"]
 ##iframe[src*="plugrush.com"]
@@ -1360,6 +1754,9 @@
 ||video.trafficstars.com^
 ||js.trafficstars.com^
 ||widget.trafficstars.com^
+||media.trafficstars.com^
+||img.trafficstars.com^
+||delivery.trafficstars.com^
 ||a.trafficstars.com^
 ||b.trafficstars.com^
 ||c.trafficstars.com^
@@ -1386,14 +1783,24 @@
 ||x.trafficstars.com^
 ||y.trafficstars.com^
 ||z.trafficstars.com^
+||ad1.trafficstars.com^
+||ad2.trafficstars.com^
+||ad3.trafficstars.com^
+||ad4.trafficstars.com^
+||ad5.trafficstars.com^
 ||trafficstars.com^$popup
+||trafficstars.com^$script,third-party
+||trafficstars.com^$image,third-party
+||trafficstars.com^$subdocument,third-party
 /trafficstars/*$script,third-party
 ##.ts-ad
 ##.trafficstars-ad
+##.ts-ad-container
+##.ts-ad-wrapper
 ##div[class*="trafficstars"]
+##div[id*="trafficstars"]
 ##iframe[src*="trafficstars.com"]
-! SECTION 14: ADDITIONAL ADULT AD NETWORK DOMAINS
-! From EasyList adult_adservers.txt and research
+! SECTION 14: ADDITIONAL ADULT AD NETWORK DOMAINS (from EasyList + research)
 ||adultforce.com^$third-party
 ||adultforce.com^$popup
 ||exoticads.com^$third-party
@@ -1421,7 +1828,6 @@
 ||frtyh.com^$third-party
 ||frutrun.com^$third-party
 ||hostave2.net^$third-party
-||hubtraffic.com^$third-party
 ||idolbucks.com^$third-party
 ||imglnka.com^$third-party
 ||imglnkb.com^$third-party
@@ -1491,7 +1897,144 @@
 ||wct.click^$third-party
 ||xxxblackbook.com^$third-party
 ||xxxmatch.com^$third-party
-! SECTION 15: ADULT AD NETWORK TRACKING PIXELS & REDIRECT DOMAINS
+||18naked.com^$third-party
+||4link.it^$third-party
+||777-partner.com^$third-party
+||777-partner.net^$third-party
+||777-partners.com^$third-party
+||777-partners.net^$third-party
+||777partner.com^$script,third-party
+||777partner.net^$third-party
+||777partners.com^$third-party
+||acmexxx.com^$third-party
+||adcell.de^$third-party
+||adsession.com^$third-party
+||aipmedia.com^$third-party
+||allosponsor.com^$third-party
+||awempire.com^$third-party
+||bcash4you.com^$third-party
+||brothersincash.com^$third-party
+||caltat.com^$third-party
+||camdough.com^$third-party
+||camduty.com^$third-party
+||campartner.com^$third-party
+||camsense.com^$third-party
+||cashthat.com^$third-party
+||deecash.com^$third-party
+||demanier.com^$third-party
+||direction-x.com^$third-party
+||dreamserve.dev^$third-party
+||dtiserv2.com^$third-party
+||easyflirt.com^$third-party
+||erotikdating.com^$third-party
+||euro4ads.de^$third-party
+||exchangecash.de^$third-party
+||facetz.net^$third-party
+||fleshcash.com^$third-party
+||fncash.com^$third-party
+||fncnet1.com^$third-party
+||freewebfonts.org^$third-party
+||frestacero.com^$third-party
+||fuelbuck.com^$third-party
+||golderotica.com^$third-party
+||hookupbucks.com^$third-party
+||hornymatches.com^$third-party
+||hotsocials.com^$third-party
+||icebns.com^$third-party
+||iheartbucks.com^$third-party
+||imlive.com^$script,third-party
+||internebula.net^$third-party
+||itslive.com^$third-party
+||itspsmup.com^$third-party
+||kadam.ru^$third-party
+||kinkadservercdn.com^$third-party
+||leche69.com^$third-party
+||lifepromo.biz^$third-party
+||livejasmin.tv^$third-party
+||livepromotools.com^$third-party
+||lucidcommerce.com^$third-party
+||mallcom.com^$third-party
+||markswebcams.com^$third-party
+||masterwanker.com^$third-party
+||matrix-cash.com^$third-party
+||mcprofits.com^$third-party
+||media-click.ru^$third-party
+||methodcash.com^$third-party
+||mmaaxx.com^$third-party
+||mobalives.com^$third-party
+||mobilerevenu.com^$third-party
+||mobtop.ru^$third-party
+||modelsgonebad.com^$third-party
+||morehitserver.com^$third-party
+||mtree.com^$third-party
+||mxpopad.com^$third-party
+||naiadexports.com^$third-party
+||newnudecash.com^$third-party
+||oconner.biz^$third-party
+||omynews.net^$third-party
+||otherprofit.com^$third-party
+||outster.com^$third-party
+||partnercash.de^$third-party
+||pecash.com^$third-party
+||pepipo.com^$third-party
+||pictureturn.com^$third-party
+||pkeeper3.ru^$third-party
+||popander.com^$third-party
+||popupclick.ru^$third-party
+||pornattitude.com^$third-party
+||pornglee.com^$third-party
+||porngray.com^$third-party
+||pornkings.com^$third-party
+||pornleep.com^$third-party
+||porntry.com^$third-party
+||ppc-direct.com^$third-party
+||premiumhdv.com^$third-party
+||privacyprotector.com^$third-party
+||program3.com^$third-party
+||promo4partners.com^$third-party
+||promocionesweb.com^$third-party
+||promokrot.com^$third-party
+||promotools.biz^$third-party
+||promowebstar.com^$third-party
+||propbn.com^$third-party
+||protect-x.com^$third-party
+||protizer.ru^$third-party
+||ptclassic.com^$third-party
+||ptwebcams.com^$third-party
+||rack-media.com^$third-party
+||rubanners.com^$third-party
+||runetki.com^$third-party
+||safelinktracker.com^$third-party
+||secretbehindporn.com^$third-party
+||seeawhale.com^$third-party
+||seekbang.com^$third-party
+||seitentipp.com^$third-party
+||sexlist.com^$third-party
+||sexplaycam.com^$third-party
+||sexsearch.com^$third-party
+||sextadate.net^$third-party
+||sextracker.com^$third-party
+||sexy-ch.com^$third-party
+||showmeyouradsnow.com^$third-party
+||spunkycash.com^$third-party
+||sweetmedia.org^$third-party
+||sweetstudents.com^$third-party
+||tantoporno.com^$third-party
+||teasernet.ru^$third-party
+||the-adult-company.com^$third-party
+||topsexcams.club^$third-party
+||tossoffads.com^$third-party
+||verticalaffiliation.com^$third-party
+||vlexokrako.com^$third-party
+||vsexshop.ru^$third-party
+||wamcash.com^$third-party
+||wantatop.com^$third-party
+||worldsbestcams.com^$third-party
+||xlovecam.com^$third-party
+||xogogowebcams.com^$third-party
+||yourdatelink.com^$third-party
+||yurivideo.com^$third-party
+! SECTION 15: ADULT AD TRACKING PIXELS & REDIRECT DOMAINS
 ||itrrbz.com^
 ||itrsrvs.com^
 ||itrcdn.com^
@@ -1507,7 +2050,6 @@
 ||tingrinter.com^$third-party
 ||trunblock.com^$third-party
 ||uxernab.com^$third-party
-||vlexokrako.com^$third-party
 ||vogozae.ru^$third-party
 ||pc20160522.com^$third-party
 ||marisappear.pro^$third-party
@@ -1516,11 +2058,19 @@
 ||cwchmb.com^
 ||ifrwam.com^
 ||lwxjg.com^
-||itspsmup.com^$third-party
 ||kcolbda.com^$third-party
 ||ptrfc.com^$third-party
 ||trw12.com^$third-party
 ||w4vecl1cks.com^$third-party
+||sv2.biz^$third-party
+||digreality.com^$third-party
+||donstick.com^$third-party
+||dphunters.com^$third-party
+||filexan.com^$third-party
+||geofamily.ru^$third-party
+||ilovecheating.com^$third-party
+||iwanttodeliver.com^$third-party
+||onlineporno.fun^$third-party
 ! SECTION 16: ADULT AD NETWORK URL PATTERNS
 /adserver/$script,third-party,domain=~exoclick.com|~trafficjunky.com|~juicyads.com|~eroadvertising.com
 /adserve/$script,third-party
@@ -1558,152 +2108,31 @@
 /conversion.$script,third-party
 /postback.$script,third-party
 ! SECTION 17: CDN77 / SHARED INFRASTRUCTURE
-! CDN77 is heavily used by ExoClick, JuicyAds, PopAds
 ||cdn77.org^$domain=exoclick.com|exosrv.com|juicyads.com|popads.net|trafficjunky.com
 /rsc.cdn77.org/*$script,third-party
 ! SECTION 18: BUNNYCDN / ALT-R1CD INFRASTRUCTURE
 ||b-cdn.net^$domain=popcash.net
-! SECTION 19: THIRD-PARTY TRACKING SCRIPTS
-! Scripts loaded by adult ad networks for tracking/analytics
-||elasticemail.com^$domain=propellerads.com
-||emarsys.net^$domain=propellerads.com
-! SECTION 20: SPECIFIC AD FORMAT BLOCKING RULES
-! Popunder/popunder ad format blocking
+! SECTION 19: SPECIFIC AD FORMAT BLOCKING RULES
 $popup,domain=exoclick.com|exosrv.com|trafficjunky.com|trafficjunky.net|trafficfactory.biz|trafficfactory.com|juicyads.com|juicyads.me|hilltopads.com|clickadu.com|clickadu.net|eroadvertising.com|ero-advertising.com|adsterra.com|propellerads.com|propellerp.com|popads.net|popcash.net|plugrush.com|trafficstars.com|hjflm.com
-! Third-party script blocking
-||exoclick.com^$script,third-party
-||exosrv.com^$script,third-party
-||trafficjunky.com^$script,third-party
-||trafficjunky.net^$script,third-party
-||trafficfactory.biz^$script,third-party
-||juicyads.com^$script,third-party
-||juicyads.me^$script,third-party
-||hilltopads.com^$script,third-party
-||clickadu.com^$script,third-party
-||clickadu.net^$script,third-party
-||eroadvertising.com^$script,third-party
-||ero-advertising.com^$script,third-party
-||adsterra.com^$script,third-party
-||propellerads.com^$script,third-party
-||propellerp.com^$script,third-party
-||popads.net^$script,third-party
-||popcash.net^$script,third-party
-||plugrush.com^$script,third-party
-||trafficstars.com^$script,third-party
-||prscripts.com^$script,third-party
-! Third-party image/media blocking
-||exoclick.com^$image,third-party
-||exosrv.com^$image,third-party
-||trafficjunky.com^$image,third-party
-||trafficjunky.net^$image,third-party
-||trafficfactory.biz^$image,third-party
-||juicyads.com^$image,third-party
-||hilltopads.com^$image,third-party
-||clickadu.com^$image,third-party
-||eroadvertising.com^$image,third-party
-||adsterra.com^$image,third-party
-||propellerads.com^$image,third-party
-||popads.net^$image,third-party
-||popcash.net^$image,third-party
-||plugrush.com^$image,third-party
-||trafficstars.com^$image,third-party
-! Third-party subdocument blocking
-||exoclick.com^$subdocument,third-party
-||exosrv.com^$subdocument,third-party
-||trafficjunky.com^$subdocument,third-party
-||trafficjunky.net^$subdocument,third-party
-||trafficfactory.biz^$subdocument,third-party
-||juicyads.com^$subdocument,third-party
-||hilltopads.com^$subdocument,third-party
-||clickadu.com^$subdocument,third-party
-||eroadvertising.com^$subdocument,third-party
-||adsterra.com^$subdocument,third-party
-||propellerads.com^$subdocument,third-party
-||popads.net^$subdocument,third-party
-||popcash.net^$subdocument,third-party
-||plugrush.com^$subdocument,third-party
-||trafficstars.com^$subdocument,third-party
-! SECTION 21: ADDITIONAL SUBDOMAIN VARIANTS
-! Additional known subdomains for main networks
-||ad1.exoclick.com^
-||ad2.exoclick.com^
-||ad3.exoclick.com^
-||ad4.exoclick.com^
-||ad5.exoclick.com^
-||ad6.exoclick.com^
-||ad7.exoclick.com^
-||ad8.exoclick.com^
-||ad9.exoclick.com^
-||ad1.exosrv.com^
-||ad2.exosrv.com^
-||ad3.exosrv.com^
-||ad4.exosrv.com^
-||ad5.exosrv.com^
-||ad6.exosrv.com^
-||ad7.exosrv.com^
-||ad8.exosrv.com^
-||ad9.exosrv.com^
-||ad1.trafficjunky.com^
-||ad2.trafficjunky.com^
-||ad3.trafficjunky.com^
-||ad4.trafficjunky.com^
-||ad5.trafficjunky.com^
-||ad1.trafficjunky.net^
-||ad2.trafficjunky.net^
-||ad3.trafficjunky.net^
-||ad4.trafficjunky.net^
-||ad5.trafficjunky.net^
-||ad1.trafficfactory.biz^
-||ad2.trafficfactory.biz^
-||ad3.trafficfactory.biz^
-||ad1.trafficfactory.com^
-||ad2.trafficfactory.com^
-||ad3.trafficfactory.com^
-||ad1.juicyads.com^
-||ad2.juicyads.com^
-||ad3.juicyads.com^
-||ad1.juicyads.me^
-||ad2.juicyads.me^
-||ad3.juicyads.me^
-||ad1.hilltopads.com^
-||ad2.hilltopads.com^
-||ad3.hilltopads.com^
-||ad1.clickadu.com^
-||ad2.clickadu.com^
-||ad3.clickadu.com^
-||ad1.clickadu.net^
-||ad2.clickadu.net^
-||ad3.clickadu.net^
-||ad1.eroadvertising.com^
-||ad2.eroadvertising.com^
-||ad3.eroadvertising.com^
-||ad1.ero-advertising.com^
-||ad2.ero-advertising.com^
-||ad3.ero-advertising.com^
-||ad1.adsterra.com^
-||ad2.adsterra.com^
-||ad3.adsterra.com^
-||ad4.adsterra.com^
-||ad5.adsterra.com^
-||ad1.propellerads.com^
-||ad2.propellerads.com^
-||ad3.propellerads.com^
-||ad1.propellerads.net^
-||ad2.propellerads.net^
-||ad3.propellerads.net^
-||ad1.popads.net^
-||ad2.popads.net^
-||ad3.popads.net^
-||ad1.popcash.net^
-||ad2.popcash.net^
-||ad3.popcash.net^
-||ad1.plugrush.com^
-||ad2.plugrush.com^
-||ad3.plugrush.com^
-||ad1.trafficstars.com^
-||ad2.trafficstars.com^
-||ad3.trafficstars.com^
-! SECTION 22: ADDITIONAL DOMAIN VARIATIONS (.xyz, .cc, .top, etc.)
+! SECTION 20: SCRIPT INJECTION PATTERNS
+/exoclick.*\.js|$script
+/exosrv.*\.js|$script
+/trafficjunky.*\.js|$script
+/trafficfactory.*\.js|$script
+/juicyads.*\.js|$script
+/hilltopads.*\.js|$script
+/clickadu.*\.js|$script
+/eroadvertising.*\.js|$script
+/ero-ad.*\.js|$script
+/adsterra.*\.js|$script
+/propellerads.*\.js|$script
+/propellerp.*\.js|$script
+/popads.*\.js|$script
+/popcash.*\.js|$script
+/plugrush.*\.js|$script
+/trafficstars.*\.js|$script
+/prscripts.*\.js|$script
+! SECTION 21: ADDITIONAL DOMAIN VARIATIONS (.xyz, .cc, .top, .site)
 ||exoclick.xyz^
 ||exoclick.cc^
 ||exoclick.top^
@@ -1748,109 +2177,7 @@ $popup,domain=exoclick.com|exosrv.com|trafficjunky.com|trafficjunky.net|trafficf
 ||trafficstars.xyz^
 ||trafficstars.cc^
 ||trafficstars.top^
-! SECTION 23: ADDITIONAL ELEMENT HIDING RULES
-! Generic adult ad container classes/IDs
-##.ad-container
-##.ad-wrapper
-##.ad-banner
-##.ad-slot
-##.ad-unit
-##.ad-placement
-##.ad-zone
-##.ad-area
-##.ad-frame
-##.ad-iframe
-##.ad-overlay
-##.ad-interstitial
-##.ad-popunder
-##.ad-popup
-##.ad-redirect
-##.adult-ad
-##.adult-banner
-##.adult-ad-container
-##.adult-ad-wrapper
-##.xxx-ad
-##.xxx-banner
-##.porn-ad
-##.porn-banner
-##.nsfw-ad
-##.nsfw-banner
-##.cam-ad
-##.cam-banner
-##.cam-widget
-##.dating-ad
-##.dating-banner
-##.livecam-ad
-##.livecam-banner
-##.livecam-widget
-! Specific container classes from known networks
-##.exo-ad-container
-##.exo-ad-wrapper
-##.tj-ad-container
-##.tj-ad-wrapper
-##.tf-ad-container
-##.ja-ad-container
-##.ja-ad-wrapper
-##.hta-ad-container
-##.cadu-ad-container
-##.ero-ad-container
-##.ast-ad-container
-##.pa-ad-container
-##.popad-container
-##.pc-ad-container
-##.pr-ad-container
-##.ts-ad-container
-! SECTION 24: SPECIFIC PATH BLOCKING
-! SECTION 25: ADDITIONAL KNOWN ADULT AD INFRASTRUCTURE
-! MindGeek/Aylo additional ad infrastructure
-||mgid.com^$third-party,domain=pornhub.com|redtube.com|youporn.com|tube8.com|spankwire.com|peeperz.com
-||aylo.com^$third-party
-! Adcash (serves adult segments)
-||adcash.com^$popup,third-party
-||adcash.net^
-||adcash.org^
-||ads.adcash.com^
-||cdn.adcash.com^
-||static.adcash.com^
-! TwinRed (adult ad network)
-||twinred.com^$third-party
-||twinred.com^$popup
-||ads.twinred.com^
-||cdn.twinred.com^
-||serving.twinred.com^
-! AdMaven (serves adult segments)
-||admaven.com^$third-party
-||admaven.com^$popup
-||ads.admaven.com^
-||cdn.admaven.com^
-! RichAds / Kadam (adult traffic)
-||richads.com^$third-party
-||kadam.net^$third-party
-||kadam.ru^$third-party
-! Clickaine
-||clickaine.com^$popup
-||ads.clickaine.com^
-||cdn.clickaine.com^
-! SECTION 26: SCRIPT INJECTION PATTERNS
-! Block common script injection patterns from these networks
-/exoclick.*\.js|$script
-/exosrv.*\.js|$script
-/trafficjunky.*\.js|$script
-/trafficfactory.*\.js|$script
-/juicyads.*\.js|$script
-/hilltopads.*\.js|$script
-/clickadu.*\.js|$script
-/eroadvertising.*\.js|$script
-/ero-ad.*\.js|$script
-/adsterra.*\.js|$script
-/propellerads.*\.js|$script
-/propellerp.*\.js|$script
-/popads.*\.js|$script
-/popcash.*\.js|$script
-/plugrush.*\.js|$script
-/trafficstars.*\.js|$script
-/prscripts.*\.js|$script
-! SECTION 27: ADDITIONAL COUNTRY-SPECIFIC DOMAIN VARIATIONS
+! SECTION 22: COUNTRY-SPECIFIC DOMAIN VARIATIONS
 ||exoclick.fr^
 ||exoclick.it^
 ||exoclick.co.uk^
@@ -1869,6 +2196,19 @@ $popup,domain=exoclick.com|exosrv.com|trafficjunky.com|trafficjunky.net|trafficf
 ||exoclick.cz^
 ||exoclick.ro^
 ||exoclick.hu^
+||exoclick.at^
+||exoclick.be^
+||exoclick.ch^
+||exoclick.dk^
+||exoclick.fi^
+||exoclick.gr^
+||exoclick.hk^
+||exoclick.ie^
+||exoclick.il^
+||exoclick.no^
+||exoclick.pt^
+||exoclick.sg^
+||exoclick.tw^
 ||trafficjunky.de^
 ||trafficjunky.fr^
 ||trafficjunky.es^
@@ -1878,6 +2218,11 @@ $popup,domain=exoclick.com|exosrv.com|trafficjunky.com|trafficjunky.net|trafficf
 ||trafficjunky.jp^
 ||trafficjunky.br^
 ||trafficjunky.in^
+||trafficjunky.mx^
+||trafficjunky.au^
+||trafficjunky.ca^
+||trafficjunky.nl^
+||trafficjunky.pl^
 ||juicyads.de^
 ||juicyads.fr^
 ||juicyads.es^
@@ -1885,32 +2230,41 @@ $popup,domain=exoclick.com|exosrv.com|trafficjunky.com|trafficjunky.net|trafficf
 ||juicyads.co.uk^
 ||juicyads.ru^
 ||juicyads.jp^
+||juicyads.br^
+||juicyads.in^
 ||hilltopads.de^
 ||hilltopads.fr^
 ||hilltopads.es^
 ||hilltopads.ru^
+||hilltopads.jp^
+||hilltopads.br^
 ||clickadu.de^
 ||clickadu.fr^
 ||clickadu.es^
 ||clickadu.ru^
+||clickadu.jp^
 ||eroadvertising.de^
 ||eroadvertising.fr^
 ||eroadvertising.es^
 ||eroadvertising.it^
 ||eroadvertising.ru^
+||eroadvertising.jp^
 ||adsterra.de^
 ||adsterra.fr^
 ||adsterra.es^
 ||adsterra.ru^
 ||adsterra.in^
+||adsterra.jp^
 ||propellerads.de^
 ||propellerads.fr^
 ||propellerads.es^
 ||propellerads.ru^
+||propellerads.jp^
 ||popads.de^
 ||popads.fr^
 ||popads.es^
 ||popads.ru^
+||popads.jp^
 ||popcash.de^
 ||popcash.fr^
 ||popcash.es^
@@ -1923,12 +2277,57 @@ $popup,domain=exoclick.com|exosrv.com|trafficjunky.com|trafficjunky.net|trafficf
 ||trafficstars.fr^
 ||trafficstars.es^
 ||trafficstars.ru^
-! SECTION 28: REDIRECT CHAIN BLOCKING
-! Common redirect patterns used by adult ad networks
+! SECTION 23: ADULT AD NETWORK ELEMENT HIDING RULES
+##.ad-container
+##.ad-wrapper
+##.adult-ad
+##.adult-banner
+##.adult-ad-container
+##.adult-ad-wrapper
+##.xxx-ad
+##.xxx-banner
+##.porn-ad
+##.porn-banner
+##.nsfw-ad
+##.nsfw-banner
+##.cam-ad
+##.cam-banner
+##.cam-widget
+##.dating-ad
+##.dating-banner
+##.livecam-ad
+##.livecam-banner
+##.livecam-widget
+! SECTION 24: ADDITIONAL ADULT AD NETWORKS (Adcash, TwinRed, AdMaven, etc.)
+||adcash.com^$popup,third-party
+||adcash.net^
+||adcash.org^
+||ads.adcash.com^
+||cdn.adcash.com^
+||static.adcash.com^
+||serving.adcash.com^
+||tracking.adcash.com^
+||twinred.com^$third-party
+||twinred.com^$popup
+||ads.twinred.com^
+||cdn.twinred.com^
+||serving.twinred.com^
+||tracking.twinred.com^
+||admaven.com^$third-party
+||admaven.com^$popup
+||ads.admaven.com^
+||cdn.admaven.com^
+||serving.admaven.com^
+||tracking.admaven.com^
+||richads.com^$third-party
+||kadam.net^$third-party
+||clickaine.com^$popup
+||ads.clickaine.com^
+||cdn.clickaine.com^
+! SECTION 25: REDIRECT CHAIN BLOCKING
 ||bonertraffic.mobi^
 ||hjflm.com^$popup,third-party
-! SECTION 29: WILDCARD DOMAIN CATCH-ALL FOR CRITICAL NETWORKS
-! These catch any remaining subdomains
+! SECTION 26: WILDCARD DOMAIN CATCH-ALL (third-party)
 ||exoclick.com^$third-party
 ||exosrv.com^$third-party
 ||trafficjunky.com^$third-party
@@ -1950,12 +2349,9 @@ $popup,domain=exoclick.com|exosrv.com|trafficjunky.com|trafficjunky.net|trafficf
 ||plugrush.com^$third-party
 ||trafficstars.com^$third-party
 ||adnetwork.net^$third-party
-||kinkadservercdn.com^$third-party
 ||clickadilla.com^$third-party
 ||adcash.com^$third-party
-||ssterra.com^$third-party
 ||adsterratools.com^$third-party
-||megacpm.com^$third-party
 ||adsterra.co^$third-party
 ||eroads.com^$third-party
 ||ero-ad.net^$third-party
@@ -1964,15 +2360,6 @@ $popup,domain=exoclick.com|exosrv.com|trafficjunky.com|trafficjunky.net|trafficf
 ||propellerads.biz^$third-party
 ||propellerads.org^$third-party
 ||apropeller.com^$third-party
-||popads.com^$third-party
-||popads.org^$third-party
-||popads.io^$third-party
-||popcash.com^$third-party
-||popcash.org^$third-party
-||popcash.io^$third-party
-||plugrush.net^$third-party
-||plugrush.org^$third-party
-||plugrush.io^$third-party
 ||hilltopads.net^$third-party
 ||hilltopads.org^$third-party
 ||hilltopads.io^$third-party
@@ -1985,7 +2372,6 @@ $popup,domain=exoclick.com|exosrv.com|trafficjunky.com|trafficjunky.net|trafficf
 ||juicyads.net^$third-party
 ||juicyads.org^$third-party
 ||juicyads.io^$third-party
-||adxpansion.com^$third-party
 ||eroadvertising.net^$third-party
 ||eroadvertising.org^$third-party
 ||eroadvertising.io^$third-party
@@ -2001,7 +2387,1169 @@ $popup,domain=exoclick.com|exosrv.com|trafficjunky.com|trafficjunky.net|trafficf
 ||adsterra.org^$third-party
 ||adsterra.io^$third-party
 ||adsterra.biz^$third-party
+||exoclick.xyz^$third-party
+||exoclick.cc^$third-party
+||exoclick.top^$third-party
+||exosrv.xyz^$third-party
+||exosrv.cc^$third-party
+||exosrv.top^$third-party
 ! END OF FILTER LIST
+! SECTION 27: EXPANDED EXOCLICK SUBDOMAIN COVERAGE
+||ssl.exoclick.com^
+||ssl.exosrv.com^
+||v2.exoclick.com^
+||v3.exoclick.com^
+||v4.exoclick.com^
+||v2.exosrv.com^
+||v3.exosrv.com^
+||v4.exosrv.com^
+||exchange.exoclick.com^
+||sync.exoclick.com^
+||sync.exosrv.com^
+||bid.exoclick.com^
+||bid.exosrv.com^
+||match.exoclick.com^
+||match.exosrv.com^
+||collector.exoclick.com^
+||collector.exosrv.com^
+||feeder.exoclick.com^
+||feeder.exosrv.com^
+||filter.exoclick.com^
+||matcher.exoclick.com^
+||bidder.exoclick.com^
+||buyer.exoclick.com^
+||seller.exoclick.com^
+||auction.exoclick.com^
+||dsp.exoclick.com^
+||ssp.exoclick.com^
+||dmp.exoclick.com^
+||cpx.exoclick.com^
+||cpm.exoclick.com^
+||cpc.exoclick.com^
+||cpa.exoclick.com^
+||cpv.exoclick.com^
+||cpi.exoclick.com^
+||pool.exoclick.com^
+||cluster.exoclick.com^
+||manager.exoclick.com^
+||monitor.exoclick.com^
+||aggregator.exoclick.com^
+||relay.exoclick.com^
+||hub.exoclick.com^
+||node.exoclick.com^
+||proxy.exoclick.com^
+||geo.exoclick.com^
+||zone.exoclick.com^
+||niche.exoclick.com^
+||thumb.exoclick.com^
+||thumbs.exoclick.com^
+||smart.exoclick.com^
+||native.exoclick.com^
+||interstitial.exoclick.com^
+||redirect.exoclick.com^
+||font.exoclick.com^
+||css.exoclick.com^
+||exchange.exosrv.com^
+||filter.exosrv.com^
+||matcher.exosrv.com^
+||bidder.exosrv.com^
+||buyer.exosrv.com^
+||seller.exosrv.com^
+||auction.exosrv.com^
+||dsp.exosrv.com^
+||ssp.exosrv.com^
+||dmp.exosrv.com^
+||cpx.exosrv.com^
+||cpm.exosrv.com^
+||cpc.exosrv.com^
+||cpa.exosrv.com^
+||cpv.exosrv.com^
+||cpi.exosrv.com^
+||pool.exosrv.com^
+||cluster.exosrv.com^
+||manager.exosrv.com^
+||monitor.exosrv.com^
+||aggregator.exosrv.com^
+||relay.exosrv.com^
+||hub.exosrv.com^
+||node.exosrv.com^
+||proxy.exosrv.com^
+||geo.exosrv.com^
+||zone.exosrv.com^
+||niche.exosrv.com^
+||thumb.exosrv.com^
+||thumbs.exosrv.com^
+||smart.exosrv.com^
+||native.exosrv.com^
+||interstitial.exosrv.com^
+||redirect.exosrv.com^
+||font.exosrv.com^
+||css.exosrv.com^
+||pop.exoclick.com^
+||popunder.exoclick.com^
+||pop.exosrv.com^
+||popunder.exosrv.com^
+! SECTION 28: EXPANDED TRAFFICJUNKY SUBDOMAIN COVERAGE
+||v2.trafficjunky.com^
+||v3.trafficjunky.com^
+||exchange.trafficjunky.com^
+||sync.trafficjunky.com^
+||bid.trafficjunky.com^
+||match.trafficjunky.com^
+||collector.trafficjunky.com^
+||feeder.trafficjunky.com^
+||filter.trafficjunky.com^
+||matcher.trafficjunky.com^
+||bidder.trafficjunky.com^
+||buyer.trafficjunky.com^
+||seller.trafficjunky.com^
+||auction.trafficjunky.com^
+||dsp.trafficjunky.com^
+||ssp.trafficjunky.com^
+||dmp.trafficjunky.com^
+||cpx.trafficjunky.com^
+||cpm.trafficjunky.com^
+||cpc.trafficjunky.com^
+||cpa.trafficjunky.com^
+||cpv.trafficjunky.com^
+||cpi.trafficjunky.com^
+||pool.trafficjunky.com^
+||cluster.trafficjunky.com^
+||manager.trafficjunky.com^
+||monitor.trafficjunky.com^
+||aggregator.trafficjunky.com^
+||relay.trafficjunky.com^
+||hub.trafficjunky.com^
+||node.trafficjunky.com^
+||proxy.trafficjunky.com^
+||geo.trafficjunky.com^
+||zone.trafficjunky.com^
+||niche.trafficjunky.com^
+||thumb.trafficjunky.com^
+||thumbs.trafficjunky.com^
+||smart.trafficjunky.com^
+||native.trafficjunky.com^
+||interstitial.trafficjunky.com^
+||css.trafficjunky.com^
+||ssl.trafficjunky.net^
+||v2.trafficjunky.net^
+||exchange.trafficjunky.net^
+||sync.trafficjunky.net^
+||bid.trafficjunky.net^
+||match.trafficjunky.net^
+||collector.trafficjunky.net^
+||dsp.trafficjunky.net^
+||ssp.trafficjunky.net^
+||dmp.trafficjunky.net^
+||cpm.trafficjunky.net^
+||cpc.trafficjunky.net^
+||cpa.trafficjunky.net^
+||cpv.trafficjunky.net^
+||pool.trafficjunky.net^
+||cluster.trafficjunky.net^
+||manager.trafficjunky.net^
+||monitor.trafficjunky.net^
+||geo.trafficjunky.net^
+||zone.trafficjunky.net^
+||niche.trafficjunky.net^
+||smart.trafficjunky.net^
+||native.trafficjunky.net^
+||interstitial.trafficjunky.net^
+! SECTION 29: EXPANDED JUICYADS SUBDOMAIN COVERAGE
+||ssl.juicyads.com^
+||v2.juicyads.com^
+||exchange.juicyads.com^
+||sync.juicyads.com^
+||bid.juicyads.com^
+||match.juicyads.com^
+||collector.juicyads.com^
+||feeder.juicyads.com^
+||filter.juicyads.com^
+||matcher.juicyads.com^
+||bidder.juicyads.com^
+||buyer.juicyads.com^
+||seller.juicyads.com^
+||auction.juicyads.com^
+||dsp.juicyads.com^
+||ssp.juicyads.com^
+||dmp.juicyads.com^
+||cpx.juicyads.com^
+||cpm.juicyads.com^
+||cpc.juicyads.com^
+||cpa.juicyads.com^
+||cpv.juicyads.com^
+||cpi.juicyads.com^
+||pool.juicyads.com^
+||cluster.juicyads.com^
+||manager.juicyads.com^
+||monitor.juicyads.com^
+||aggregator.juicyads.com^
+||relay.juicyads.com^
+||hub.juicyads.com^
+||node.juicyads.com^
+||proxy.juicyads.com^
+||geo.juicyads.com^
+||zone.juicyads.com^
+||niche.juicyads.com^
+||thumb.juicyads.com^
+||thumbs.juicyads.com^
+||smart.juicyads.com^
+||native.juicyads.com^
+||interstitial.juicyads.com^
+||css.juicyads.com^
+||ssl.juicyads.me^
+||v2.juicyads.me^
+||exchange.juicyads.me^
+||sync.juicyads.me^
+||bid.juicyads.me^
+||match.juicyads.me^
+||collector.juicyads.me^
+||dsp.juicyads.me^
+||cpm.juicyads.me^
+||cpc.juicyads.me^
+||cpa.juicyads.me^
+||pool.juicyads.me^
+||manager.juicyads.me^
+||geo.juicyads.me^
+||zone.juicyads.me^
+||smart.juicyads.me^
+||native.juicyads.me^
+! SECTION 30: EXPANDED HILLTOPADS SUBDOMAIN COVERAGE
+||ssl.hilltopads.com^
+||v2.hilltopads.com^
+||exchange.hilltopads.com^
+||sync.hilltopads.com^
+||bid.hilltopads.com^
+||match.hilltopads.com^
+||collector.hilltopads.com^
+||feeder.hilltopads.com^
+||filter.hilltopads.com^
+||matcher.hilltopads.com^
+||bidder.hilltopads.com^
+||buyer.hilltopads.com^
+||seller.hilltopads.com^
+||auction.hilltopads.com^
+||dsp.hilltopads.com^
+||ssp.hilltopads.com^
+||dmp.hilltopads.com^
+||cpx.hilltopads.com^
+||cpm.hilltopads.com^
+||cpc.hilltopads.com^
+||cpa.hilltopads.com^
+||cpv.hilltopads.com^
+||cpi.hilltopads.com^
+||pool.hilltopads.com^
+||cluster.hilltopads.com^
+||manager.hilltopads.com^
+||monitor.hilltopads.com^
+||aggregator.hilltopads.com^
+||relay.hilltopads.com^
+||hub.hilltopads.com^
+||node.hilltopads.com^
+||proxy.hilltopads.com^
+||geo.hilltopads.com^
+||zone.hilltopads.com^
+||niche.hilltopads.com^
+||thumb.hilltopads.com^
+||thumbs.hilltopads.com^
+||smart.hilltopads.com^
+||native.hilltopads.com^
+||interstitial.hilltopads.com^
+||css.hilltopads.com^
+! SECTION 31: EXPANDED CLICKADU SUBDOMAIN COVERAGE
+||ssl.clickadu.com^
+||v2.clickadu.com^
+||exchange.clickadu.com^
+||sync.clickadu.com^
+||bid.clickadu.com^
+||match.clickadu.com^
+||collector.clickadu.com^
+||feeder.clickadu.com^
+||filter.clickadu.com^
+||matcher.clickadu.com^
+||bidder.clickadu.com^
+||buyer.clickadu.com^
+||seller.clickadu.com^
+||auction.clickadu.com^
+||dsp.clickadu.com^
+||ssp.clickadu.com^
+||dmp.clickadu.com^
+||cpx.clickadu.com^
+||cpm.clickadu.com^
+||cpc.clickadu.com^
+||cpa.clickadu.com^
+||cpv.clickadu.com^
+||cpi.clickadu.com^
+||pool.clickadu.com^
+||cluster.clickadu.com^
+||manager.clickadu.com^
+||monitor.clickadu.com^
+||aggregator.clickadu.com^
+||relay.clickadu.com^
+||hub.clickadu.com^
+||node.clickadu.com^
+||proxy.clickadu.com^
+||geo.clickadu.com^
+||zone.clickadu.com^
+||niche.clickadu.com^
+||thumb.clickadu.com^
+||thumbs.clickadu.com^
+||native.clickadu.com^
+||interstitial.clickadu.com^
+||css.clickadu.com^
+||ssl.clickadu.net^
+||v2.clickadu.net^
+||exchange.clickadu.net^
+||sync.clickadu.net^
+||bid.clickadu.net^
+||match.clickadu.net^
+||collector.clickadu.net^
+||dsp.clickadu.net^
+||cpm.clickadu.net^
+||cpc.clickadu.net^
+||cpa.clickadu.net^
+||pool.clickadu.net^
+||manager.clickadu.net^
+||geo.clickadu.net^
+||zone.clickadu.net^
+||native.clickadu.net^
+! SECTION 32: EXPANDED EROADVERTISING SUBDOMAIN COVERAGE
+||ssl.eroadvertising.com^
+||v2.eroadvertising.com^
+||exchange.eroadvertising.com^
+||sync.eroadvertising.com^
+||bid.eroadvertising.com^
+||match.eroadvertising.com^
+||collector.eroadvertising.com^
+||feeder.eroadvertising.com^
+||filter.eroadvertising.com^
+||matcher.eroadvertising.com^
+||bidder.eroadvertising.com^
+||buyer.eroadvertising.com^
+||seller.eroadvertising.com^
+||auction.eroadvertising.com^
+||dsp.eroadvertising.com^
+||ssp.eroadvertising.com^
+||dmp.eroadvertising.com^
+||cpx.eroadvertising.com^
+||cpm.eroadvertising.com^
+||cpc.eroadvertising.com^
+||cpa.eroadvertising.com^
+||cpv.eroadvertising.com^
+||cpi.eroadvertising.com^
+||pool.eroadvertising.com^
+||cluster.eroadvertising.com^
+||manager.eroadvertising.com^
+||monitor.eroadvertising.com^
+||aggregator.eroadvertising.com^
+||relay.eroadvertising.com^
+||hub.eroadvertising.com^
+||node.eroadvertising.com^
+||proxy.eroadvertising.com^
+||geo.eroadvertising.com^
+||zone.eroadvertising.com^
+||niche.eroadvertising.com^
+||thumb.eroadvertising.com^
+||thumbs.eroadvertising.com^
+||smart.eroadvertising.com^
+||native.eroadvertising.com^
+||interstitial.eroadvertising.com^
+||css.eroadvertising.com^
+||ssl.ero-advertising.com^
+||v2.ero-advertising.com^
+||exchange.ero-advertising.com^
+||sync.ero-advertising.com^
+||bid.ero-advertising.com^
+||match.ero-advertising.com^
+||collector.ero-advertising.com^
+||dsp.ero-advertising.com^
+||cpm.ero-advertising.com^
+||cpc.ero-advertising.com^
+||cpa.ero-advertising.com^
+||pool.ero-advertising.com^
+||manager.ero-advertising.com^
+||geo.ero-advertising.com^
+||zone.ero-advertising.com^
+||native.ero-advertising.com^
+! SECTION 33: EXPANDED ADSTERRA SUBDOMAIN COVERAGE
+||ssl.adsterra.com^
+||v2.adsterra.com^
+||v3.adsterra.com^
+||exchange.adsterra.com^
+||sync.adsterra.com^
+||bid.adsterra.com^
+||match.adsterra.com^
+||collector.adsterra.com^
+||feeder.adsterra.com^
+||filter.adsterra.com^
+||matcher.adsterra.com^
+||bidder.adsterra.com^
+||buyer.adsterra.com^
+||seller.adsterra.com^
+||auction.adsterra.com^
+||dsp.adsterra.com^
+||ssp.adsterra.com^
+||dmp.adsterra.com^
+||cpx.adsterra.com^
+||cpm.adsterra.com^
+||cpc.adsterra.com^
+||cpa.adsterra.com^
+||cpv.adsterra.com^
+||cpi.adsterra.com^
+||pool.adsterra.com^
+||cluster.adsterra.com^
+||manager.adsterra.com^
+||monitor.adsterra.com^
+||aggregator.adsterra.com^
+||relay.adsterra.com^
+||hub.adsterra.com^
+||node.adsterra.com^
+||proxy.adsterra.com^
+||geo.adsterra.com^
+||zone.adsterra.com^
+||niche.adsterra.com^
+||thumb.adsterra.com^
+||thumbs.adsterra.com^
+||smart.adsterra.com^
+||native.adsterra.com^
+||interstitial.adsterra.com^
+||css.adsterra.com^
+||ssl.adsterra.net^
+||v2.adsterra.net^
+||exchange.adsterra.net^
+||sync.adsterra.net^
+||bid.adsterra.net^
+||collector.adsterra.net^
+||dsp.adsterra.net^
+||cpm.adsterra.net^
+||cpc.adsterra.net^
+||cpa.adsterra.net^
+||pool.adsterra.net^
+||manager.adsterra.net^
+||geo.adsterra.net^
+||native.adsterra.net^
+! SECTION 34: EXPANDED PROPELLERADS SUBDOMAIN COVERAGE
+||ssl.propellerads.com^
+||v2.propellerads.com^
+||exchange.propellerads.com^
+||sync.propellerads.com^
+||bid.propellerads.com^
+||match.propellerads.com^
+||collector.propellerads.com^
+||feeder.propellerads.com^
+||filter.propellerads.com^
+||matcher.propellerads.com^
+||bidder.propellerads.com^
+||buyer.propellerads.com^
+||seller.propellerads.com^
+||auction.propellerads.com^
+||dsp.propellerads.com^
+||ssp.propellerads.com^
+||dmp.propellerads.com^
+||cpx.propellerads.com^
+||cpm.propellerads.com^
+||cpc.propellerads.com^
+||cpa.propellerads.com^
+||cpv.propellerads.com^
+||cpi.propellerads.com^
+||pool.propellerads.com^
+||cluster.propellerads.com^
+||manager.propellerads.com^
+||monitor.propellerads.com^
+||aggregator.propellerads.com^
+||relay.propellerads.com^
+||hub.propellerads.com^
+||node.propellerads.com^
+||proxy.propellerads.com^
+||geo.propellerads.com^
+||zone.propellerads.com^
+||niche.propellerads.com^
+||thumb.propellerads.com^
+||thumbs.propellerads.com^
+||smart.propellerads.com^
+||native.propellerads.com^
+||interstitial.propellerads.com^
+||css.propellerads.com^
+||ssl.propellerads.net^
+||v2.propellerads.net^
+||exchange.propellerads.net^
+||sync.propellerads.net^
+||bid.propellerads.net^
+||collector.propellerads.net^
+||dsp.propellerads.net^
+||cpm.propellerads.net^
+||cpc.propellerads.net^
+||cpa.propellerads.net^
+||pool.propellerads.net^
+||manager.propellerads.net^
+||geo.propellerads.net^
+||native.propellerads.net^
+||ssl.propellerp.com^
+||v2.propellerp.com^
+||exchange.propellerp.com^
+||sync.propellerp.com^
+||bid.propellerp.com^
+||collector.propellerp.com^
+||dsp.propellerp.com^
+||cpm.propellerp.com^
+||cpc.propellerp.com^
+||cpa.propellerp.com^
+||pool.propellerp.com^
+||manager.propellerp.com^
+||geo.propellerp.com^
+||native.propellerp.com^
+! SECTION 35: EXPANDED POPADS SUBDOMAIN COVERAGE
+||ssl.popads.net^
+||v2.popads.net^
+||exchange.popads.net^
+||sync.popads.net^
+||bid.popads.net^
+||match.popads.net^
+||collector.popads.net^
+||feeder.popads.net^
+||filter.popads.net^
+||matcher.popads.net^
+||bidder.popads.net^
+||buyer.popads.net^
+||seller.popads.net^
+||auction.popads.net^
+||dsp.popads.net^
+||ssp.popads.net^
+||dmp.popads.net^
+||cpx.popads.net^
+||cpm.popads.net^
+||cpc.popads.net^
+||cpa.popads.net^
+||cpv.popads.net^
+||cpi.popads.net^
+||pool.popads.net^
+||cluster.popads.net^
+||manager.popads.net^
+||monitor.popads.net^
+||aggregator.popads.net^
+||relay.popads.net^
+||hub.popads.net^
+||node.popads.net^
+||proxy.popads.net^
+||geo.popads.net^
+||zone.popads.net^
+||niche.popads.net^
+||thumb.popads.net^
+||thumbs.popads.net^
+||smart.popads.net^
+||native.popads.net^
+||interstitial.popads.net^
+||css.popads.net^
+! SECTION 36: EXPANDED POPCASH SUBDOMAIN COVERAGE
+||ssl.popcash.net^
+||v2.popcash.net^
+||exchange.popcash.net^
+||sync.popcash.net^
+||bid.popcash.net^
+||match.popcash.net^
+||collector.popcash.net^
+||feeder.popcash.net^
+||filter.popcash.net^
+||matcher.popcash.net^
+||bidder.popcash.net^
+||buyer.popcash.net^
+||seller.popcash.net^
+||auction.popcash.net^
+||dsp.popcash.net^
+||ssp.popcash.net^
+||dmp.popcash.net^
+||cpx.popcash.net^
+||cpm.popcash.net^
+||cpc.popcash.net^
+||cpa.popcash.net^
+||cpv.popcash.net^
+||cpi.popcash.net^
+||pool.popcash.net^
+||cluster.popcash.net^
+||manager.popcash.net^
+||monitor.popcash.net^
+||aggregator.popcash.net^
+||relay.popcash.net^
+||hub.popcash.net^
+||node.popcash.net^
+||proxy.popcash.net^
+||geo.popcash.net^
+||zone.popcash.net^
+||niche.popcash.net^
+||thumb.popcash.net^
+||thumbs.popcash.net^
+||smart.popcash.net^
+||native.popcash.net^
+||interstitial.popcash.net^
+||css.popcash.net^
+! SECTION 37: EXPANDED PLUGRUSH SUBDOMAIN COVERAGE
+||ssl.plugrush.com^
+||v2.plugrush.com^
+||exchange.plugrush.com^
+||sync.plugrush.com^
+||bid.plugrush.com^
+||match.plugrush.com^
+||collector.plugrush.com^
+||feeder.plugrush.com^
+||filter.plugrush.com^
+||matcher.plugrush.com^
+||bidder.plugrush.com^
+||buyer.plugrush.com^
+||seller.plugrush.com^
+||auction.plugrush.com^
+||dsp.plugrush.com^
+||ssp.plugrush.com^
+||dmp.plugrush.com^
+||cpx.plugrush.com^
+||cpm.plugrush.com^
+||cpc.plugrush.com^
+||cpa.plugrush.com^
+||cpv.plugrush.com^
+||cpi.plugrush.com^
+||pool.plugrush.com^
+||cluster.plugrush.com^
+||manager.plugrush.com^
+||monitor.plugrush.com^
+||aggregator.plugrush.com^
+||relay.plugrush.com^
+||hub.plugrush.com^
+||node.plugrush.com^
+||proxy.plugrush.com^
+||geo.plugrush.com^
+||zone.plugrush.com^
+||niche.plugrush.com^
+||thumb.plugrush.com^
+||thumbs.plugrush.com^
+||smart.plugrush.com^
+||native.plugrush.com^
+||interstitial.plugrush.com^
+||css.plugrush.com^
+! SECTION 38: EXPANDED TRAFFICSTARS SUBDOMAIN COVERAGE
+||ssl.trafficstars.com^
+||v2.trafficstars.com^
+||exchange.trafficstars.com^
+||sync.trafficstars.com^
+||bid.trafficstars.com^
+||match.trafficstars.com^
+||collector.trafficstars.com^
+||feeder.trafficstars.com^
+||filter.trafficstars.com^
+||matcher.trafficstars.com^
+||bidder.trafficstars.com^
+||buyer.trafficstars.com^
+||seller.trafficstars.com^
+||auction.trafficstars.com^
+||dsp.trafficstars.com^
+||ssp.trafficstars.com^
+||dmp.trafficstars.com^
+||cpx.trafficstars.com^
+||cpm.trafficstars.com^
+||cpc.trafficstars.com^
+||cpa.trafficstars.com^
+||cpv.trafficstars.com^
+||cpi.trafficstars.com^
+||pool.trafficstars.com^
+||cluster.trafficstars.com^
+||manager.trafficstars.com^
+||monitor.trafficstars.com^
+||aggregator.trafficstars.com^
+||relay.trafficstars.com^
+||hub.trafficstars.com^
+||node.trafficstars.com^
+||proxy.trafficstars.com^
+||geo.trafficstars.com^
+||zone.trafficstars.com^
+||niche.trafficstars.com^
+||thumb.trafficstars.com^
+||thumbs.trafficstars.com^
+||smart.trafficstars.com^
+||native.trafficstars.com^
+||interstitial.trafficstars.com^
+||css.trafficstars.com^
+! SECTION 39: EXPANDED TRAFFICFACTORY SUBDOMAIN COVERAGE
+||ssl.trafficfactory.biz^
+||v2.trafficfactory.biz^
+||exchange.trafficfactory.biz^
+||sync.trafficfactory.biz^
+||bid.trafficfactory.biz^
+||match.trafficfactory.biz^
+||collector.trafficfactory.biz^
+||feeder.trafficfactory.biz^
+||filter.trafficfactory.biz^
+||matcher.trafficfactory.biz^
+||bidder.trafficfactory.biz^
+||buyer.trafficfactory.biz^
+||seller.trafficfactory.biz^
+||auction.trafficfactory.biz^
+||dsp.trafficfactory.biz^
+||ssp.trafficfactory.biz^
+||dmp.trafficfactory.biz^
+||cpx.trafficfactory.biz^
+||cpm.trafficfactory.biz^
+||cpc.trafficfactory.biz^
+||cpa.trafficfactory.biz^
+||cpv.trafficfactory.biz^
+||cpi.trafficfactory.biz^
+||pool.trafficfactory.biz^
+||cluster.trafficfactory.biz^
+||manager.trafficfactory.biz^
+||monitor.trafficfactory.biz^
+||aggregator.trafficfactory.biz^
+||relay.trafficfactory.biz^
+||hub.trafficfactory.biz^
+||node.trafficfactory.biz^
+||proxy.trafficfactory.biz^
+||geo.trafficfactory.biz^
+||zone.trafficfactory.biz^
+||niche.trafficfactory.biz^
+||thumb.trafficfactory.biz^
+||thumbs.trafficfactory.biz^
+||smart.trafficfactory.biz^
+||native.trafficfactory.biz^
+||interstitial.trafficfactory.biz^
+||css.trafficfactory.biz^
+||ssl.trafficfactory.com^
+||v2.trafficfactory.com^
+||exchange.trafficfactory.com^
+||sync.trafficfactory.com^
+||bid.trafficfactory.com^
+||match.trafficfactory.com^
+||collector.trafficfactory.com^
+||dsp.trafficfactory.com^
+||cpm.trafficfactory.com^
+||cpc.trafficfactory.com^
+||cpa.trafficfactory.com^
+||pool.trafficfactory.com^
+||manager.trafficfactory.com^
+||geo.trafficfactory.com^
+||native.trafficfactory.com^
+! SECTION 40: ADDITIONAL ELEMENT HIDING RULES
+##div[class*="exoclick-"]
+##div[class*="exo-ad"]
+##div[class*="tj-ad"]
+##div[class*="tf-ad"]
+##div[class*="juicy-ad"]
+##div[class*="hta-ad"]
+##div[class*="cadu-ad"]
+##div[class*="ero-ad"]
+##div[class*="ast-ad"]
+##div[class*="pa-ad"]
+##div[class*="popad-"]
+##div[class*="pc-ad"]
+##div[class*="pr-ad"]
+##div[class*="ts-ad"]
+##div[id*="exoclick-"]
+##div[id*="exo-ad"]
+##div[id*="tj-ad"]
+##div[id*="tf-ad"]
+##div[id*="juicy-ad"]
+##div[id*="hta-ad"]
+##div[id*="cadu-ad"]
+##div[id*="ero-ad"]
+##div[id*="ast-ad"]
+##div[id*="pa-ad"]
+##div[id*="popad-"]
+##div[id*="pc-ad"]
+##div[id*="pr-ad"]
+##div[id*="ts-ad"]
+##iframe[src*="exoclick"]
+##iframe[src*="exosrv"]
+##iframe[src*="trafficjunky"]
+##iframe[src*="trafficfactory"]
+##iframe[src*="juicyads"]
+##iframe[src*="hilltopads"]
+##iframe[src*="clickadu"]
+##iframe[src*="eroadvertising"]
+##iframe[src*="ero-advertising"]
+##iframe[src*="adsterra"]
+##iframe[src*="propellerads"]
+##iframe[src*="propellerp"]
+##iframe[src*="popads"]
+##iframe[src*="popcash"]
+##iframe[src*="plugrush"]
+##iframe[src*="trafficstars"]
+##iframe[src*="prscripts"]
+##iframe[src*="hjflm"]
+##a[href*="trafficjunky.net"]
+##a[href*="trafficfactory.biz"]
+##a[href*="trafficfactory.com"]
+##a[href*="hilltopads.com"]
+##a[href*="clickadu.net"]
+##a[href*="ero-advertising.com"]
+##a[href*="propellerads.com"]
+##a[href*="propellerp.com"]
+##a[href*="popads.net"]
+##a[href*="popcash.net"]
+##a[href*="plugrush.com"]
+##a[href*="trafficstars.com"]
+##a[href*="prscripts.com"]
+##a[href*="clickadilla.com"]
+##a[href*="adnetwork.net"]
+##a[href*="adxpansion.com"]
+##a[href*="adsterratools.com"]
+##a[href*="ssterra.com"]
+! SECTION 41: ADDITIONAL URL PATTERN RULES
+/exoclick_*.$script,third-party
+/exosrv_*.$script,third-party
+/trafficjunky_*.$script,third-party
+/trafficfactory_*.$script,third-party
+/juicyads_*.$script,third-party
+/hilltopads_*.$script,third-party
+/clickadu_*.$script,third-party
+/eroadvertising_*.$script,third-party
+/ero-ad_*.$script,third-party
+/adsterra_*.$script,third-party
+/propellerads_*.$script,third-party
+/propellerp_*.$script,third-party
+/popads_*.$script,third-party
+/popcash_*.$script,third-party
+/plugrush_*.$script,third-party
+/trafficstars_*.$script,third-party
+/prscripts_*.$script,third-party
+/exo_.$script,third-party
+/tj_.$script,third-party
+/tf_.$script,third-party
+/ja_.$script,third-party
+/hta_.$script,third-party
+/cadu_.$script,third-party
+/ero_.$script,third-party
+/ast_.$script,third-party
+/pa_.$script,third-party
+/pca_.$script,third-party
+/pr_.$script,third-party
+/ts_.$script,third-party
+/exoclick$popup
+/exosrv$popup
+/trafficjunky$popup
+/trafficfactory$popup
+/juicyads$popup
+/hilltopads$popup
+/clickadu$popup
+/eroadvertising$popup
+/adsterra$popup
+/propellerads$popup
+/propellerp$popup
+/popads$popup
+/popcash$popup
+/plugrush$popup
+/trafficstars$popup
+! SECTION 42: XMLHTTPREQUEST BLOCKING
+||exoclick.com^$xmlhttprequest,third-party
+||exosrv.com^$xmlhttprequest,third-party
+||trafficjunky.com^$xmlhttprequest,third-party
+||trafficjunky.net^$xmlhttprequest,third-party
+||trafficfactory.biz^$xmlhttprequest,third-party
+||trafficfactory.com^$xmlhttprequest,third-party
+||juicyads.com^$xmlhttprequest,third-party
+||juicyads.me^$xmlhttprequest,third-party
+||hilltopads.com^$xmlhttprequest,third-party
+||clickadu.com^$xmlhttprequest,third-party
+||clickadu.net^$xmlrequest,third-party
+||eroadvertising.com^$xmlhttprequest,third-party
+||ero-advertising.com^$xmlhttprequest,third-party
+||adsterra.com^$xmlhttprequest,third-party
+||propellerads.com^$xmlhttprequest,third-party
+||propellerp.com^$xmlhttprequest,third-party
+||popads.net^$xmlhttprequest,third-party
+||popcash.net^$xmlhttprequest,third-party
+||plugrush.com^$xmlhttprequest,third-party
+||trafficstars.com^$xmlhttprequest,third-party
+||prscripts.com^$xmlhttprequest,third-party
+||hjflm.com^$xmlhttprequest,third-party
+||phncdn.com^$xmlhttprequest,third-party
+||clickadilla.com^$xmlhttprequest,third-party
+||adsterratools.com^$xmlhttprequest,third-party
+||ssterra.com^$xmlhttprequest,third-party
+||megacpm.com^$xmlhttprequest,third-party
+||adnetwork.net^$xmlhttprequest,third-party
+||adultforce.com^$xmlhttprequest,third-party
+! SECTION 43: MEDIA/WEBSOCKET BLOCKING
+||exoclick.com^$media,third-party
+||exosrv.com^$media,third-party
+||trafficjunky.com^$media,third-party
+||juicyads.com^$media,third-party
+||hilltopads.com^$media,third-party
+||clickadu.com^$media,third-party
+||eroadvertising.com^$media,third-party
+||adsterra.com^$media,third-party
+||propellerads.com^$media,third-party
+||popads.net^$media,third-party
+||popcash.net^$media,third-party
+||plugrush.com^$media,third-party
+||trafficstars.com^$media,third-party
+||phncdn.com^$media,third-party
+||exoclick.com^$websocket,third-party
+||exosrv.com^$websocket,third-party
+||trafficjunky.com^$websocket,third-party
+||juicyads.com^$websocket,third-party
+||hilltopads.com^$websocket,third-party
+||clickadu.com^$websocket,third-party
+||eroadvertising.com^$websocket,third-party
+||adsterra.com^$websocket,third-party
+||propellerads.com^$websocket,third-party
+||popads.net^$websocket,third-party
+||popcash.net^$websocket,third-party
+||plugrush.com^$websocket,third-party
+||trafficstars.com^$websocket,third-party
+||phncdn.com^$websocket,third-party
+! SECTION 44: FONT BLOCKING
+||exoclick.com^$font,third-party
+||exosrv.com^$font,third-party
+||trafficjunky.com^$font,third-party
+||juicyads.com^$font,third-party
+||hilltopads.com^$font,third-party
+||clickadu.com^$font,third-party
+||eroadvertising.com^$font,third-party
+||adsterra.com^$font,third-party
+||propellerads.com^$font,third-party
+||popads.net^$font,third-party
+||popcash.net^$font,third-party
+||plugrush.com^$font,third-party
+||trafficstars.com^$font,third-party
+! SECTION 45: ADDITIONAL ADULT AD NETWORKS FROM EASYLIST
+||cam-crush.com^$third-party
+||cam4flat.com^$third-party
+||cherrytv.media^$third-party
+||chatinator.com^$third-party
+||camsoda1.com^$third-party
+||cybernetentertainment.com^$third-party
+||directadvert.ru^$third-party
+||fapality.com^$third-party
+||festaporno.com^$third-party
+||hornyspots.com^$third-party
+||javhd-trk.com^$third-party
+||livecam.com^$third-party
+||liveprivates.com^$third-party
+||livexxx.me^$third-party
+||lovecam.com.br^$third-party
+||lovercash.com^$third-party
+||lsawards.com^$third-party
+||mc-nudes.com^$third-party
+||newads.bangbros.com^$third-party
+||private4.com^$third-party
+||privateseiten.net^$third-party
+||privatewebseiten.com^$third-party
+||red-bees.com^$third-party
+||redlightcenter.com^$third-party
+||sexdatecash.com^$third-party
+||sexiba.com^$third-party
+||smartbn.ru^$third-party
+||spankmasters.com^$third-party
+||vrstage.com^$third-party
+||xgogi.com^$third-party
+||xhamstercams.com^$third-party
+! SECTION 46: ADDITIONAL TRACKING AND REDIRECT DOMAINS
+||trickyseduction.com^$third-party
+! END OF EXPANDED SECTIONS
+! SECTION 47: COMPREHENSIVE EXOCLICK PATH BLOCKING
+! SECTION 48: ADSTERRA PATH BLOCKING
+! SECTION 49: PROPELLERADS PATH BLOCKING
+! SECTION 50: CLICKADU PATH BLOCKING
+! SECTION 51: TRAFFICJUNKY PATH BLOCKING
+! SECTION 52: HILLTOPADS PATH BLOCKING
+! SECTION 53: JUICYADS PATH BLOCKING
+! SECTION 54: EROADVERTISING PATH BLOCKING
+! SECTION 55: POPADS PATH BLOCKING
+! SECTION 56: POPCASH PATH BLOCKING
+! SECTION 57: PLUGRUSH PATH BLOCKING
+! SECTION 58: TRAFFICSTARS PATH BLOCKING
+! SECTION 59: TRAFFICFACTORY PATH BLOCKING
+! SECTION 60: PHNCDN COMPREHENSIVE SUBDOMAIN BLOCKING
+||ads1.phncdn.com^
+||ads2.phncdn.com^
+||ads3.phncdn.com^
+||ads4.phncdn.com^
+||ads5.phncdn.com^
+||cdn1.phncdn.com^
+||cdn2.phncdn.com^
+||cdn3.phncdn.com^
+||cdn4.phncdn.com^
+||cdn5.phncdn.com^
+||static1.phncdn.com^
+||static2.phncdn.com^
+||static3.phncdn.com^
+||static4.phncdn.com^
+||static5.phncdn.com^
+||video1.phncdn.com^
+||video2.phncdn.com^
+||video3.phncdn.com^
+||video4.phncdn.com^
+||video5.phncdn.com^
+||media1.phncdn.com^
+||media2.phncdn.com^
+||media3.phncdn.com^
+||media4.phncdn.com^
+||media5.phncdn.com^
+||img1.phncdn.com^
+||img2.phncdn.com^
+||img3.phncdn.com^
+||img4.phncdn.com^
+||img5.phncdn.com^
+||js1.phncdn.com^
+||js2.phncdn.com^
+||js3.phncdn.com^
+||js4.phncdn.com^
+||js5.phncdn.com^
+||tracking1.phncdn.com^
+||tracking2.phncdn.com^
+||tracking3.phncdn.com^
+||pixel1.phncdn.com^
+||pixel2.phncdn.com^
+||pixel3.phncdn.com^
+||serve1.phncdn.com^
+||serve2.phncdn.com^
+||serve3.phncdn.com^
+! SECTION 61: ADDITIONAL MINDGEEK/AYLO AD INFRASTRUCTURE
+||mgid.com^$third-party,domain=pornhub.com|redtube.com|youporn.com|tube8.com|spankwire.com|peeperz.com|pornhubpremium.com
+||aylo.com^$third-party
+||mindgeek.com^$third-party
+||cdn.mgid.com^$third-party
+||ads.mgid.com^$third-party
+||js.mgid.com^$third-party
+||pixel.mgid.com^$third-party
+||track.mgid.com^$third-party
+! SECTION 62: ADDITIONAL ELEMENT HIDING — AD CONTAINER IDS
+###exoclick-ad
+###exosrv-ad
+###trafficjunky-ad
+###trafficfactory-ad
+###juicyads-ad
+###hilltopads-ad
+###clickadu-ad
+###eroadvertising-ad
+###adsterra-ad
+###propellerads-ad
+###popads-ad
+###popcash-ad
+###plugrush-ad
+###trafficstars-ad
+###exo-banner
+###tj-banner
+###tf-banner
+###ja-banner
+###hta-banner
+###cadu-banner
+###ero-banner
+###ast-banner
+###pa-banner
+###popad-banner
+###pc-banner
+###pr-banner
+###ts-banner
+###exo-widget
+###tj-widget
+###tf-widget
+###ja-widget
+###hta-widget
+###cadu-widget
+###ero-widget
+###ast-widget
+###pa-widget
+###popad-widget
+###pc-widget
+###pr-widget
+###ts-widget
+! SECTION 63: COMPREHENSIVE CROSS-NETWORK WILDCARD URL BLOCKING
+/exoclick_*.js|$script
+/exosrv_*.js|$script
+/trafficjunky_*.js|$script
+/trafficfactory_*.js|$script
+/juicyads_*.js|$script
+/hilltopads_*.js|$script
+/clickadu_*.js|$script
+/eroadvertising_*.js|$script
+/adsterra_*.js|$script
+/propellerads_*.js|$script
+/propellerp_*.js|$script
+/popads_*.js|$script
+/popcash_*.js|$script
+/plugrush_*.js|$script
+/trafficstars_*.js|$script
+/prscripts_*.js|$script
+/exoclick-*.js|$script
+/exosrv-*.js|$script
+/trafficjunky-*.js|$script
+/trafficfactory-*.js|$script
+/juicyads-*.js|$script
+/hilltopads-*.js|$script
+/clickadu-*.js|$script
+/eroadvertising-*.js|$script
+/adsterra-*.js|$script
+/propellerads-*.js|$script
+/propellerp-*.js|$script
+/popads-*.js|$script
+/popcash-*.js|$script
+/plugrush-*.js|$script
+/trafficstars-*.js|$script
+/prscripts-*.js|$script
+/exoclick*.min.js|$script
+/exosrv*.min.js|$script
+/trafficjunky*.min.js|$script
+/trafficfactory*.min.js|$script
+/juicyads*.min.js|$script
+/hilltopads*.min.js|$script
+/clickadu*.min.js|$script
+/eroadvertising*.min.js|$script
+/adsterra*.min.js|$script
+/propellerads*.min.js|$script
+/propellerp*.min.js|$script
+/popads*.min.js|$script
+/popcash*.min.js|$script
+/plugrush*.min.js|$script
+/trafficstars*.min.js|$script
+! SECTION 64: ADDITIONAL SUBDOMAIN VARIATIONS (.cc, .info, .biz)
+||exoclick.info^
+||exoclick.biz^
+||exosrv.info^
+||exosrv.biz^
+||trafficjunky.info^
+||trafficjunky.biz^
+||trafficfactory.info^
+||juicyads.info^
+||juicyads.biz^
+||hilltopads.info^
+||clickadu.info^
+||eroadvertising.info^
+||eroadvertising.biz^
+||ero-advertising.info^
+||ero-advertising.biz^
+||ero-advertising.cc^
+||adsterra.info^
+||propellerp.info^
+||propellerp.biz^
+||propellerp.cc^
+||popads.info^
+||popads.biz^
+||popcash.info^
+||popcash.biz^
+||plugrush.info^
+||plugrush.biz^
+||trafficstars.info^
+||trafficstars.biz^
+||clickadilla.info^
+||clickadilla.biz^
+||clickadilla.cc^
+||clickadilla.net^
+||clickadilla.org^
+||clickadilla.io^
+||hjflm.info^
+||hjflm.biz^
+||hjflm.cc^
+||hjflm.net^
+||hjflm.org^
+||hjflm.io^
+||prscripts.info^
+||prscripts.biz^
+||prscripts.cc^
+||prscripts.net^
+||prscripts.org^
+||prscripts.io^
+||adnetwork.info^
+||adnetwork.biz^
+||adnetwork.cc^
+||adnetwork.org^
+||adnetwork.io^
+! SECTION 65: ADDITIONAL ADULT AD EXCHANGE/RTB DOMAINS
 ! Title: Webcam & Adult Dating Affiliate Blocker
 ! Description: Blocks affiliate tracking, ad delivery, and promotional content from cam sites and adult dating platforms
 ! Last modified: 2026-04-13T11:12:00Z
@@ -3467,7 +5015,6 @@ flirt4free.com##.top-banner
 ||hookupaffiliate.com^
 ||localhookup.com^$third-party
 ||localhookup.net^$third-party
-||sexsearch.com^$third-party
 ||sexsearch.net^$third-party
 ||sexsearchaff.com^
 ||sexsearchaffiliate.com^
@@ -4121,191 +5668,59 @@ ashleymadison.com##.notification-prompt
 ! CATEGORY 1: MALVERTISING NETWORKS SERVING ADULT CONTENT
 ! These are ad networks known to serve or redirect to adult/pornographic content
 ! through legitimate-looking ads on regular websites.
-||777-partner.com^$third-party
-||777-partner.net^$third-party
-||777-partners.com^$third-party
-||777-partners.net^$third-party
-||777partner.com^$script,third-party
-||777partner.net^$third-party
-||777partners.com^$third-party
-||acmexxx.com^$third-party
-||adsession.com^$third-party
 ||affiliaxe.com^$third-party
 ||affiligay.net^$third-party
-||aipmedia.com^$third-party
-||livepromotools.com^$third-party
-||media-click.ru^$third-party
-||mxpopad.com^$third-party
-||popander.com^$third-party
-||popupclick.ru^$third-party
-||promo4partners.com^$third-party
-||promotools.biz^$third-party
-||promowebstar.com^$third-party
-||propbn.com^$third-party
+||hubtraffic.com^$third-party
 ||sexadvertise.com^$third-party
-||smartbn.ru^$third-party
-||teasernet.ru^$third-party
-||tossoffads.com^$third-party
-||direction-x.com^$third-party
-||directadvert.ru^$third-party
-||fncash.com^$third-party
-||fncnet1.com^$third-party
-||deecash.com^$third-party
-||digreality.com^$third-party
-||dtiserv2.com^$third-party
-||filexan.com^$third-party
-||fleshcash.com^$third-party
-||fuelbuck.com^$third-party
 ||g--o.info^$third-party
 ||ggwcash.com^$third-party
-||hookupbucks.com^$third-party
-||icebns.com^$third-party
-||iheartbucks.com^$third-party
 ||kaplay.com^$third-party
-||lovercash.com^$third-party
-||mallcom.com^$third-party
-||matrix-cash.com^$third-party
-||mcprofits.com^$third-party
-||methodcash.com^$third-party
-||mmaaxx.com^$third-party
 ||mrskincash.com^$third-party
-||mtree.com^$third-party
-||newnudecash.com^$third-party
-||otherprofit.com^$third-party
-||partnercash.de^$third-party
-||pecash.com^$third-party
-||pornkings.com^$third-party
-||ppc-direct.com^$third-party
-||private4.com^$third-party
-||program3.com^$third-party
-||promocionesweb.com^$third-party
-||promokrot.com^$third-party
-||protect-x.com^$third-party
-||protizer.ru^$third-party
-||rubanners.com^$third-party
-||spunkycash.com^$third-party
-||sweetmedia.org^$third-party
 ||trafclick.ru^$third-party
-||vrstage.com^$third-party
-||wamcash.com^$third-party
 ||xxxjmp.com^$third-party
-||cybernetentertainment.com^$third-party
 ||chokertraffic.com^$third-party
-||caltat.com^$third-party
-||allosponsor.com^$third-party
-||brothersincash.com^$third-party
-||morehitserver.com^$third-party
-||rack-media.com^$third-party
-||safelinktracker.com^$third-party
-||sexlist.com^$third-party
-||sextracker.com^$third-party
 ||sexuhot.com^$third-party
-||trickyseduction.com^$third-party
-||bcash4you.com^$third-party
 ||fuckyoucash.com^$third-party
-||iwanttodeliver.com^$third-party
-||lucidcommerce.com^$third-party
 ||lwxjg.com^$third-party
-||pkeeper3.ru^$third-party
 ||pvtest.com^$third-party
 ||quantumws.net^$third-party
 ||qwerty24.net^$third-party
 ||rdiul.com^$third-party
-||seitentipp.com^$third-party
 ||solutionsadultes.com^$third-party
-||sweetstudents.com^$third-party
-||tantoporno.com^$third-party
 ||test1productions.com^$third-party
-||the-adult-company.com^$third-party
-||topsexcams.club^$third-party
 ||trafdoc.com^$third-party
-||verticalaffiliation.com^$third-party
 ||vfgta.com^$third-party
 ||viensvoircesite.com^$third-party
 ||virtuagirlhd.com^$third-party
-||vsexshop.ru^$third-party
-||wantatop.com^$third-party
-||yourdatelink.com^$third-party
-||yurivideo.com^$third-party
-||4link.it^$third-party
-||adcell.de^$third-party
 ||bumskontakte.ch^$third-party
-||euro4ads.de^$third-party
-||exchangecash.de^$third-party
-||frestacero.com^$third-party
-||geofamily.ru^$third-party
 ||inheart.ru^$third-party
-||internebula.net^$third-party
 ||itw.me^$third-party
 ||ningme.ru^$third-party
-||pepipo.com^$third-party
 ||pourmajeurs.com^$third-party
-||privacyprotector.com^$third-party
-||privateseiten.net^$third-party
-||privatewebseiten.com^$third-party
 ||ragazzeinvendita.com^$third-party
 ||rareru.ru^$third-party
-||runetki.com^$third-party
-||sv2.biz^$third-party
 ||traffdoc.com^$third-party
-||donstick.com^$third-party
 ||ifrwam.com^$third-party
-||lifepromo.biz^$third-party
 ||mileporn.com^$third-party
-||mobalives.com^$third-party
-||mobilerevenu.com^$third-party
-||mobtop.ru^$third-party
-||modelsgonebad.com^$third-party
 ||mrporngeek.com^$third-party
 ||mywebclick.net^$third-party
-||naiadexports.com^$third-party
-||oconner.biz^$third-party
-||omynews.net^$third-party
 ||onhercam.com^$third-party
-||outster.com^$third-party
 ||ozelmedikal.com^$third-party
-||pictureturn.com^$third-party
-||pornattitude.com^$third-party
 ||porndroids.com^$third-party
-||pornglee.com^$third-party
-||porngray.com^$third-party
-||pornleep.com^$third-party
-||porntry.com^$third-party
-||premiumhdv.com^$third-party
-||ptclassic.com^$third-party
-||ptwebcams.com^$third-party
 ||pussy-pics.net^$third-party
 ||pussyeatingclub.com^$third-party
-||red-bees.com^$third-party
-||showmeyouradsnow.com^$third-party
 ||socialsexnetwork.net^$third-party
-||spankmasters.com^$third-party
 ||vid123.net^$third-party
 ||voyeurhit.com^$third-party
 ||vlogexpert.com^$third-party
-||xgogi.com^$third-party
 ||debitcrebit669.com^$third-party
-||dreamserve.dev^$third-party
-||dphunters.com^$third-party
-||festaporno.com^$third-party
-||freewebfonts.org^$third-party
-||golderotica.com^$third-party
-||hotsocials.com^$third-party
-||itslive.com^$third-party
-||javhd-trk.com^$third-party
-||leche69.com^$third-party
 ||lickbylick.com^$third-party
-||lsawards.com^$third-party
 ||meineserver.com^$third-party
 ||meta4-group.com^$third-party
-||onlineporno.fun^$third-party
 ||porn300.com^$third-party
 ||porn369.net^$third-party
 ||porn99.net^$third-party
 ||thedatezone.com^$third-party
-||xhamstercams.com^$third-party
-||xlovecam.com^$third-party
-||xogogowebcams.com^$third-party
 ! CATEGORY 2: AD REDIRECT CHAINS (Redirect to porn from regular sites)
 ! These domains act as intermediate redirect hops that eventually lead
 ! to adult content. They are loaded on non-adult sites via ads.
@@ -5851,73 +7266,35 @@ ashleymadison.com##.notification-prompt
 ||adult3dcomics.com^$third-party
 ||amateurhub.cam^$third-party
 ||avfay.com^$third-party
-||awempire.com^$third-party
 ||blackpics.net^$third-party
 ||blossoms.com^$third-party
 ||bookofsex.com^$third-party
 ||cam-lolita.net^$third-party
-||cam4flat.com^$third-party
 ||camcrush.com^$third-party
-||camdough.com^$third-party
-||camduty.com^$third-party
-||campartner.com^$third-party
-||camsense.com^$third-party
-||camsoda1.com^$third-party
-||cashthat.com^$third-party
 ||cbmiocw.com^$third-party
-||chatinator.com^$third-party
-||cherrytv.media^$third-party
 ||daiporno.com^$third-party
 ||datingamateurs.com^$third-party
 ||datingcensored.com^$third-party
-||demanier.com^$third-party
 ||digitaldesire.com^$third-party
-||easyflirt.com^$third-party
-||erotikdating.com^$third-party
 ||exclusivepussy.com^$third-party
 ||faceporn.com^$third-party
-||facetz.net^$third-party
-||fapality.com^$third-party
 ||flirt4e.com^$third-party
 ||flirtingsms.com^$third-party
 ||fuckbook.cm^$third-party
 ||fuckbookdating.com^$third-party
 ||fuckedbyme.com^$third-party
 ||gayxperience.com^$third-party
-||hornymatches.com^$third-party
-||hornyspots.com^$third-party
-||ilovecheating.com^$third-party
-||imlive.com^$script,third-party
 ||joyourself.com^$third-party
-||livecam.com^$third-party
-||livejasmin.tv^$third-party
-||liveprivates.com^$third-party
-||livexxx.me^$third-party
-||lovecam.com.br^$third-party
-||markswebcams.com^$third-party
-||masterwanker.com^$third-party
 ||matrimoniale3x.ro^$third-party
-||mc-nudes.com^$third-party
 ||mediad2.jp^$third-party
-||newads.bangbros.com^$third-party
 ||nudedworld.com^$third-party
-||redlightcenter.com^$third-party
 ||russianlovematch.com^$third-party
-||secretbehindporn.com^$third-party
-||seeawhale.com^$third-party
-||seekbang.com^$third-party
-||sexdatecash.com^$third-party
-||sexiba.com^$third-party
-||sexplaycam.com^$third-party
-||sextadate.net^$third-party
-||sexy-ch.com^$third-party
 ||streamateaccess.com^$third-party
 ||stripsaver.com^$third-party
 ||thesocialsexnetwork.com^$third-party
 ||vghd.com^$third-party
 ||watchmygf.to^$third-party
 ||wifelovers.com^$third-party
-||worldsbestcams.com^$third-party
 ! CATEGORY 14: SPECIFIC ADULT POPUP REDIRECT RULES
 ! Rules specifically targeting popups that redirect to adult content
 ! from non-adult websites
@@ -8497,23 +9874,17 @@ vb.*##iframe[src*="ad"]
 ! Ad networks commonly used on Arabic sites to serve adult ads
 ! --- ExoClick adult ad containers ---
 ##div[data-zone*="exoclick"]
-##iframe[src*="exoclick"]
 ##a[href*="exoclick"]
 ##div[class*="exo-native"]
 ##div[id*="exo-native"]
 ##div[class*="exo-zone"]
 ! --- TrafficStars adult ad containers ---
-##div[id*="trafficstars"]
 ##div[data-zone*="trafficstars"]
-##iframe[src*="trafficstars"]
 ##a[href*="trafficstars"]
 ##div[class*="ts-native"]
 ##div[id*="ts-native"]
 ! --- JuicyAds adult ad containers ---
-##div[class*="juicy-ad"]
-##div[id*="juicy-ad"]
 ##div[data-zone*="juicyads"]
-##iframe[src*="juicyads"]
 ##a[href*="juicyads"]
 ! --- AdXpansion adult ad containers ---
 ##div[class*="adxpansion"]
@@ -8522,17 +9893,13 @@ vb.*##iframe[src*="ad"]
 ##iframe[src*="adxpansion"]
 ! --- PlugRush adult ad containers ---
 ##div[data-zone*="plugrush"]
-##iframe[src*="plugrush"]
 ##a[href*="plugrush"]
 ! --- TrafficFactory adult ad containers ---
 ##div[data-zone*="trafficfactory"]
-##iframe[src*="trafficfactory"]
 ! --- EroAdvertising adult ad containers ---
 ##div[data-zone*="eroadvertising"]
-##iframe[src*="eroadvertising"]
 ! --- Adsterra adult ad containers ---
 ##div[data-zone*="adsterra"]
-##iframe[src*="adsterra"]
 ##a[href*="adsterra"]
 ! --- PopAds adult overlay containers ---
 ##div[class*="pop-ads"]
@@ -8541,18 +9908,14 @@ vb.*##iframe[src*="ad"]
 ##div[id*="popunder"]
 ! --- HilltopAds adult containers ---
 ##div[data-zone*="hilltopads"]
-##iframe[src*="hilltopads"]
 ! --- Clickadu adult containers ---
 ##div[data-zone*="clickadu"]
-##iframe[src*="clickadu"]
 ! --- PropellerAds adult containers ---
 ##div[data-zone*="propellerads"]
-##iframe[src*="propellerads"]
 ##div[class*="propeller-ad"]
 ##div[id*="propeller-ad"]
 ! --- PopCash adult containers ---
 ##div[data-zone*="popcash"]
-##iframe[src*="popcash"]
 ! --- AdMaven adult containers ---
 ##div[class*="admaven"]
 ##div[id*="admaven"]
@@ -10772,6 +12135,753 @@ shabakatv.com##.ad-banner
 shabakatv.com##div[class*="ad-slot"]
 shabakatv.com##iframe[src*="ad"]
 shabakatv.com##.popup-overlay
+! SECTION 41: ADDITIONAL ADULT AD CONTAINER VARIANTS
+! --- Adult ad banner variants ---
+##div[class*="adult-bnr"]
+##div[class*="adult_bnr"]
+##div[class*="adultbnr"]
+##div[class*="dating-bnr"]
+##div[class*="dating_bnr"]
+##div[class*="datingbnr"]
+##div[class*="cam-bnr"]
+##div[class*="cam_bnr"]
+##div[class*="cambnr"]
+##div[id*="adult-bnr"]
+##div[id*="adult_bnr"]
+##div[id*="dating-bnr"]
+##div[id*="dating_bnr"]
+##div[id*="cam-bnr"]
+##div[id*="cam_bnr"]
+! --- Adult ad promo containers ---
+##div[class*="adult-promo"]
+##div[class*="adult_promo"]
+##div[class*="adultpromo"]
+##div[class*="dating-promo"]
+##div[class*="dating_promo"]
+##div[class*="datingpromo"]
+##div[class*="cam-promo"]
+##div[class*="cam_promo"]
+##div[class*="campromo"]
+##div[id*="adult-promo"]
+##div[id*="adult_promo"]
+##div[id*="dating-promo"]
+##div[id*="dating_promo"]
+##div[id*="cam-promo"]
+##div[id*="cam_promo"]
+! --- Adult ad offer containers ---
+##div[class*="adult-offer"]
+##div[class*="adult_offer"]
+##div[class*="adultoffer"]
+##div[class*="dating-offer"]
+##div[class*="dating_offer"]
+##div[class*="datingoffer"]
+##div[class*="cam-offer"]
+##div[class*="cam_offer"]
+##div[class*="camoffer"]
+##div[id*="adult-offer"]
+##div[id*="adult_offer"]
+##div[id*="dating-offer"]
+##div[id*="dating_offer"]
+##div[id*="cam-offer"]
+##div[id*="cam_offer"]
+! --- Adult ad notice containers ---
+##div[class*="adult-notice"]
+##div[class*="adult_notice"]
+##div[class*="adultnotice"]
+##div[class*="dating-notice"]
+##div[class*="dating_notice"]
+##div[class*="datingnotice"]
+##div[id*="adult-notice"]
+##div[id*="adult_notice"]
+##div[id*="dating-notice"]
+##div[id*="dating_notice"]
+! --- Adult ad strip/bar containers ---
+##div[class*="adult-strip"]
+##div[class*="adult_strip"]
+##div[class*="adultstrip"]
+##div[class*="adult-bar"]
+##div[class*="adult_bar"]
+##div[class*="adultbar"]
+##div[class*="dating-strip"]
+##div[class*="dating_strip"]
+##div[class*="dating-bar"]
+##div[class*="dating_bar"]
+##div[id*="adult-strip"]
+##div[id*="adult_strip"]
+##div[id*="adult-bar"]
+##div[id*="adult_bar"]
+##div[id*="dating-strip"]
+##div[id*="dating_strip"]
+##div[id*="dating-bar"]
+##div[id*="dating_bar"]
+! --- Adult ad float/flyer containers ---
+##div[class*="adult-float"]
+##div[class*="adult_float"]
+##div[class*="adultfloat"]
+##div[class*="adult-flyer"]
+##div[class*="adult_flyer"]
+##div[class*="adultflyer"]
+##div[id*="adult-float"]
+##div[id*="adult_float"]
+##div[id*="adult-flyer"]
+##div[id*="adult_flyer"]
+! --- Adult ad tab/taboola-like containers ---
+##div[class*="adult-tab"]
+##div[class*="adult_tab"]
+##div[class*="adulttab"]
+##div[class*="dating-tab"]
+##div[class*="dating_tab"]
+##div[class*="datingtab"]
+##div[id*="adult-tab"]
+##div[id*="adult_tab"]
+##div[id*="dating-tab"]
+##div[id*="dating_tab"]
+! SECTION 42: ADDITIONAL POPUP/POPUNDER SCRIPT NEUTRALIZERS
+! --- Generic popunder script patterns ---
+##+js(aopr, BetterJsPop)
+##+js(aopr, jsPopunder)
+##+js(aopr, popunderPlugin)
+##+js(aopr, createPopunder)
+##+js(aopr, makePopunder)
+##+js(aopr, popunderScript)
+##+js(aopr, doPopunder)
+##+js(aopr, startPopunder)
+##+js(aopr, initPopunderScript)
+##+js(aopr, popunderClick)
+##+js(aopr, Popunder)
+##+js(aopr, PopUnder)
+##+js(aopr, POPUNDER)
+##+js(aopr, smartPop)
+##+js(aopr, SmartPop)
+##+js(aopr, popManager)
+##+js(aopr, PopManager)
+##+js(aopr, popManagerInit)
+##+js(aopr, exoPop)
+##+js(aopr, juicyPop)
+##+js(aopr, tsPop)
+##+js(aopr, plugPop)
+##+js(aopr, eroPop)
+##+js(aopr, tfPop)
+##+js(aopr, hilltopPop)
+##+js(aopr, clickaduPop)
+##+js(aopr, propellerPop)
+##+js(aopr, popcashPop)
+##+js(aopr, admavenPop)
+##+js(aopr, adsterraPop)
+! --- Generic click-under script patterns ---
+##+js(aopr, clickunder)
+##+js(aopr, ClickUnder)
+##+js(aopr, clickUnder)
+##+js(aopr, CLICKUNDER)
+##+js(aopr, initClickunder)
+##+js(aopr, startClickunder)
+##+js(aopr, doClickunder)
+##+js(aopr, clickunderScript)
+##+js(aopr, makeClickunder)
+##+js(aopr, createClickunder)
+! --- Generic adult redirect script patterns ---
+##+js(aopr, adultRedirect)
+##+js(aopr, datingRedirect)
+##+js(aopr, camRedirect)
+##+js(aopr, nsfwRedirect)
+##+js(aopr, xxxRedirect)
+##+js(aopr, sexRedirect)
+##+js(aopr, pornRedirect)
+! SECTION 43: ADDITIONAL ANTI-ADBLOCK NEUTRALIZERS
+! --- More anti-adblock detection patterns ---
+##+js(aopr, adBlockEnabled)
+##+js(aopr, adsBlocked)
+##+js(aopr, isAdsBlocked)
+##+js(aopr, blockDetected)
+##+js(aopr, detectBlock)
+##+js(aopr, checkBlock)
+##+js(aopr, adblockPlus)
+##+js(aopr, adblockplus)
+##+js(aopr, uBlockEnabled)
+##+js(aopr, braveDetected)
+##+js(aopr, adbEnabled)
+##+js(aopr, adBlockerActive)
+##+js(aopr, ad_blocker)
+##+js(aopr, adblockerActive)
+##+js(aopr, isBlocked)
+##+js(aopr, adsBlockedByAdBlocker)
+##+js(aopr, showAdblockNotice)
+##+js(aopr, showAdBlockMessage)
+##+js(aopr, adBlockMessage)
+##+js(aopr, adBlockModal)
+##+js(aopr, showAdBlockModal)
+##+js(set, adBlockEnabled, false)
+##+js(set, adsBlocked, false)
+##+js(set, isAdsBlocked, false)
+##+js(set, blockDetected, false)
+##+js(set, adBlockerActive, false)
+##+js(set, adblockerActive, false)
+##+js(set, ad_blocker, false)
+! SECTION 44: ARABIC-SPECIFIC CSP AND SCRIPT RULES
+! --- Block adult ad script injection on Arabic sites ---
+kora-streams.com##+js(noeval-if, /ad/)
+kora-streams.com##+js(noeval-if, /pop/)
+kora-streams.com##+js(noeval-if, /click/)
+kora-streams.com##.ad-container
+kora-streams.com##.ad-banner
+kora-streams.com##div[class*="ad-slot"]
+kora-streams.com##iframe[src*="ad"]
+kora-streams.com##.popup-overlay
+kora-streams.com##ins[data-ad-slot]
+arab-stream.com##+js(noeval-if, /ad/)
+arab-stream.com##+js(noeval-if, /pop/)
+arab-stream.com##.ad-container
+arab-stream.com##.ad-banner
+arab-stream.com##div[class*="ad-slot"]
+arab-stream.com##iframe[src*="ad"]
+arab-stream.com##.popup-overlay
+arab-stream.com##ins[data-ad-slot]
+masr7.com##+js(noeval-if, /ad/)
+masr7.com##.ad-container
+masr7.com##.ad-banner
+masr7.com##div[class*="ad-slot"]
+masr7.com##iframe[src*="ad"]
+masr7.com##.popup-overlay
+masr7.com##ins[data-ad-slot]
+rab7net.com##+js(noeval-if, /ad/)
+rab7net.com##+js(noeval-if, /pop/)
+rab7net.com##.ad-container
+rab7net.com##.ad-banner
+rab7net.com##div[class*="ad-slot"]
+rab7net.com##iframe[src*="ad"]
+rab7net.com##.popup-overlay
+arab-shares.com##.ad-container
+arab-shares.com##.ad-banner
+arab-shares.com##div[class*="ad-slot"]
+arab-shares.com##iframe[src*="ad"]
+arab-shares.com##.popup-overlay
+arab-money.com##.ad-container
+arab-money.com##.ad-banner
+arab-money.com##div[class*="ad-slot"]
+arab-money.com##iframe[src*="ad"]
+arab-money.com##.popup-overlay
+! SECTION 45: ADDITIONAL ARABIC-LANGUAGE SITE RULES
+cimawin.com##.ad-container
+cimawin.com##.ad-banner
+cimawin.com##div[class*="ad-slot"]
+cimawin.com##iframe[src*="ad"]
+cimawin.com##.popup-overlay
+cimawin.com##ins[data-ad-slot]
+cimamax.com##.ad-container
+cimamax.com##.ad-banner
+cimamax.com##div[class*="ad-slot"]
+cimamax.com##iframe[src*="ad"]
+cimamax.com##.popup-overlay
+cimamax.com##ins[data-ad-slot]
+cima7al.com##.ad-container
+cima7al.com##.ad-banner
+cima7al.com##div[class*="ad-slot"]
+cima7al.com##iframe[src*="ad"]
+cima7al.com##.popup-overlay
+cima7al.com##ins[data-ad-slot]
+cimaone.com##.ad-container
+cimaone.com##.ad-banner
+cimaone.com##div[class*="ad-slot"]
+cimaone.com##iframe[src*="ad"]
+cimaone.com##.popup-overlay
+cimaall.com##.ad-container
+cimaall.com##.ad-banner
+cimaall.com##div[class*="ad-slot"]
+cimaall.com##iframe[src*="ad"]
+cimaall.com##.popup-overlay
+cima2live.com##.ad-container
+cima2live.com##.ad-banner
+cima2live.com##div[class*="ad-slot"]
+cima2live.com##iframe[src*="ad"]
+cima2live.com##.popup-overlay
+cimago.com##.ad-container
+cimago.com##.ad-banner
+cimago.com##div[class*="ad-slot"]
+cimago.com##iframe[src*="ad"]
+cimago.com##.popup-overlay
+aflamco.com##.ad-container
+aflamco.com##.ad-banner
+aflamco.com##div[class*="ad-slot"]
+aflamco.com##iframe[src*="ad"]
+aflamco.com##.popup-overlay
+aflampro.com##.ad-container
+aflampro.com##.ad-banner
+aflampro.com##div[class*="ad-slot"]
+aflampro.com##iframe[src*="ad"]
+aflampro.com##.popup-overlay
+aflamnow.com##.ad-container
+aflamnow.com##.ad-banner
+aflamnow.com##div[class*="ad-slot"]
+aflamnow.com##iframe[src*="ad"]
+aflamnow.com##.popup-overlay
+aflamtop.com##.ad-container
+aflamtop.com##.ad-banner
+aflamtop.com##div[class*="ad-slot"]
+aflamtop.com##iframe[src*="ad"]
+aflamtop.com##.popup-overlay
+mosalsalay.com##.ad-container
+mosalsalay.com##.ad-banner
+mosalsalay.com##div[class*="ad-slot"]
+mosalsalay.com##iframe[src*="ad"]
+mosalsalay.com##.popup-overlay
+mosalsalat1.com##.ad-container
+mosalsalat1.com##.ad-banner
+mosalsalat1.com##div[class*="ad-slot"]
+mosalsalat1.com##iframe[src*="ad"]
+mosalsalat1.com##.popup-overlay
+! SECTION 46: ADDITIONAL ARABIC SPORTS & LIVE TV SITES
+koora4live.com##.ad-container
+koora4live.com##.ad-banner
+koora4live.com##div[class*="ad-slot"]
+koora4live.com##iframe[src*="ad"]
+koora4live.com##.popup-overlay
+koora4live.com##ins[data-ad-slot]
+koora4live.com##div[class*="taboola"]
+koora4live.com##+js(aopr, _pop)
+koora4live.com##+js(aopr, popunder)
+koora4live.com##+js(aopr, adBlockDetected)
+koora4live.com##+js(set, adBlockDetected, false)
+koora4live.com##+js(set, canRunAds, true)
+yallakoor.com##.ad-container
+yallakoor.com##.ad-banner
+yallakoor.com##div[class*="ad-slot"]
+yallakoor.com##iframe[src*="ad"]
+yallakoor.com##.popup-overlay
+yallakoor.com##ins[data-ad-slot]
+yalla-shoot1.com##.ad-container
+yalla-shoot1.com##.ad-banner
+yalla-shoot1.com##div[class*="ad-slot"]
+yalla-shoot1.com##iframe[src*="ad"]
+yalla-shoot1.com##.popup-overlay
+beinsports-live.com##.ad-container
+beinsports-live.com##.ad-banner
+beinsports-live.com##div[class*="ad-slot"]
+beinsports-live.com##iframe[src*="ad"]
+beinsports-live.com##.popup-overlay
+beinsports-live.com##ins[data-ad-slot]
+beinsports-live.com##+js(aopr, _pop)
+beinsports-live.com##+js(aopr, popunder)
+arablivetv.com##.ad-container
+arablivetv.com##.ad-banner
+arablivetv.com##div[class*="ad-slot"]
+arablivetv.com##iframe[src*="ad"]
+arablivetv.com##.popup-overlay
+livetvarab.com##.ad-container
+livetvarab.com##.ad-banner
+livetvarab.com##div[class*="ad-slot"]
+livetvarab.com##iframe[src*="ad"]
+livetvarab.com##.popup-overlay
+arabtvnet.com##.ad-container
+arabtvnet.com##.ad-banner
+arabtvnet.com##div[class*="ad-slot"]
+arabtvnet.com##iframe[src*="ad"]
+arabtvnet.com##.popup-overlay
+freesatarab.com##.ad-container
+freesatarab.com##.ad-banner
+freesatarab.com##div[class*="ad-slot"]
+freesatarab.com##iframe[src*="ad"]
+freesatarab.com##.popup-overlay
+sat-arab.com##.ad-container
+sat-arab.com##.ad-banner
+sat-arab.com##div[class*="ad-slot"]
+sat-arab.com##iframe[src*="ad"]
+sat-arab.com##.popup-overlay
+! SECTION 47: ADDITIONAL ARABIC TECH & DOWNLOAD SITES
+downlaod.com##.ad-container
+downlaod.com##.ad-banner
+downlaod.com##div[class*="ad-slot"]
+downlaod.com##iframe[src*="ad"]
+downlaod.com##.popup-overlay
+arabdown.com##.ad-container
+arabdown.com##.ad-banner
+arabdown.com##div[class*="ad-slot"]
+arabdown.com##iframe[src*="ad"]
+arabdown.com##.popup-overlay
+soft-arab.com##.ad-container
+soft-arab.com##.ad-banner
+soft-arab.com##div[class*="ad-slot"]
+soft-arab.com##iframe[src*="ad"]
+soft-arab.com##.popup-overlay
+program-arab.com##.ad-container
+program-arab.com##.ad-banner
+program-arab.com##div[class*="ad-slot"]
+program-arab.com##iframe[src*="ad"]
+program-arab.com##.popup-overlay
+arabapps.com##.ad-container
+arabapps.com##.ad-banner
+arabapps.com##div[class*="ad-slot"]
+arabapps.com##iframe[src*="ad"]
+arabapps.com##.popup-overlay
+arabmod.com##.ad-container
+arabmod.com##.ad-banner
+arabmod.com##div[class*="ad-slot"]
+arabmod.com##iframe[src*="ad"]
+arabmod.com##.popup-overlay
+! SECTION 48: ADDITIONAL GENERIC AD CONTAINER PATTERNS
+! --- Ad wrapper patterns ---
+##div[class*="adwrap-"]
+##div[id*="adwrap-"]
+##div[class*="adWrap"]
+##div[id*="adWrap"]
+##div[class*="ad_wrap_"]
+##div[id*="ad_wrap_"]
+! --- Ad divider patterns ---
+##div[class*="ad-divider"]
+##div[class*="ad_divider"]
+##div[class*="addivider"]
+##div[id*="ad-divider"]
+##div[id*="ad_divider"]
+! --- Ad separator patterns ---
+##div[class*="ad-separator"]
+##div[class*="ad_separator"]
+##div[class*="adseparator"]
+##div[id*="ad-separator"]
+##div[id*="ad_separator"]
+! --- Ad margin/spacing containers ---
+##div[class*="ad-margin"]
+##div[class*="ad_margin"]
+##div[class*="admargin"]
+##div[class*="ad-spacing"]
+##div[class*="ad_spacing"]
+##div[id*="ad-margin"]
+##div[id*="ad_margin"]
+##div[id*="ad-spacing"]
+##div[id*="ad_spacing"]
+! --- Ad background/underlay containers ---
+##div[class*="ad-bg"]
+##div[class*="ad_bg"]
+##div[class*="adbg"]
+##div[class*="ad-underlay"]
+##div[class*="ad_underlay"]
+##div[id*="ad-bg"]
+##div[id*="ad_bg"]
+##div[id*="ad-underlay"]
+##div[id*="ad_underlay"]
+! --- Ad hover/tooltip containers ---
+##div[class*="ad-hover"]
+##div[class*="ad_hover"]
+##div[class*="adhover"]
+##div[class*="ad-tooltip"]
+##div[class*="ad_tooltip"]
+##div[id*="ad-hover"]
+##div[id*="ad_hover"]
+##div[id*="ad-tooltip"]
+##div[id*="ad_tooltip"]
+! --- Ad expand/collapse containers ---
+##div[class*="ad-expand"]
+##div[class*="ad_expand"]
+##div[class*="adexpand"]
+##div[class*="ad-collapse"]
+##div[class*="ad_collapse"]
+##div[id*="ad-expand"]
+##div[id*="ad_expand"]
+##div[id*="ad-collapse"]
+##div[id*="ad_collapse"]
+! SECTION 49: ADDITIONAL ARABIC NEWS PORTAL AD RULES
+almadapress.com##.ad-container
+almadapress.com##.ad-banner
+almadapress.com##div[class*="ad-slot"]
+almadapress.com##iframe[src*="ad"]
+almadapress.com##.popup-overlay
+almadapress.com##ins[data-ad-slot]
+albawaba.com##.ad-container
+albawaba.com##.ad-banner
+albawaba.com##div[class*="ad-slot"]
+albawaba.com##iframe[src*="ad"]
+albawaba.com##.popup-overlay
+albawaba.com##ins[data-ad-slot]
+albawaba.com##div[class*="taboola"]
+middleeasteye.net##.ad-container
+middleeasteye.net##.ad-banner
+middleeasteye.net##div[class*="ad-slot"]
+middleeasteye.net##iframe[src*="ad"]
+middleeasteye.net##.popup-overlay
+middleeasteye.net##ins[data-ad-slot]
+alaraby.co.uk##div[class*="ad-slot"]
+alaraby.co.uk##ins[data-ad-slot]
+alaraby.co.uk##div[class*="taboola"]
+alaraby.co.uk##div[class*="popup-overlay"]
+raseef22.com##div[class*="ad-slot"]
+raseef22.com##ins[data-ad-slot]
+raseef22.com##div[class*="taboola"]
+mist arabic news portals
+almanar.com.lb##div[class*="ad-slot"]
+almanar.com.lb##ins[data-ad-slot]
+almanar.com.lb##div[class*="popup-overlay"]
+almayadeen.net##div[class*="ad-slot"]
+almayadeen.net##ins[data-ad-slot]
+! SECTION 50: ADDITIONAL CLOSING RULES
+! --- Generic adult-themed ad network containers ---
+##div[data-ad-network*="exoclick"]
+##div[data-ad-network*="juicyads"]
+##div[data-ad-network*="trafficstars"]
+##div[data-ad-network*="plugrush"]
+##div[data-ad-network*="eroadvertising"]
+##div[data-ad-network*="traffichaus"]
+##div[data-ad-network*="trafficfactory"]
+##div[data-ad-network*="adxpansion"]
+##div[data-ad-network*="adsterra"]
+##div[data-ad-network*="propellerads"]
+##div[data-ad-network*="hilltopads"]
+##div[data-ad-network*="clickadu"]
+##div[data-ad-network*="popcash"]
+##div[data-ad-network*="admaven"]
+! --- Generic adult-themed ad size containers ---
+##div[class*="ad-size-300"]
+##div[class*="ad-size-728"]
+##div[class*="ad-size-160"]
+##div[class*="ad-size-970"]
+##div[class*="ad-size-320"]
+##div[id*="ad-size-300"]
+##div[id*="ad-size-728"]
+##div[id*="ad-size-160"]
+##div[id*="ad-size-970"]
+##div[id*="ad-size-320"]
+! --- Generic ad div with aria labels ---
+##div[aria-label*="Advertisement"]
+##div[aria-label*="advertisement"]
+##div[aria-label*="Ad"]
+##div[aria-label*="Sponsored"]
+##div[aria-label*="sponsored"]
+##div[aria-label*="Promoted"]
+##div[aria-label*="promoted"]
+! --- Final Arabic adult affiliate tracking domains ---
+||clk.arabdate-2.com^
+||go.arabdate-3.com^
+||trk.arabcam-2.com^
+||pixel.arabdate-2.com^
+||track.arabcam-3.com^
+||click.arabadult-2.com^
+||go.arabadult-3.com^
+||trk.mideastadult-2.com^
+||clk.mideastadult-3.com^
+||pixel.mideastadult-2.com^
+||track.gulfadult-2.com^
+||click.gulfadult-3.com^
+||go.gulfadult-2.com^
+||trk.menaadult-2.com^
+||clk.menaadult-3.com^
+||pixel.menaadult-2.com^
+||track.egyadult-2.com^
+||click.egyadult-3.com^
+||go.ksadating-2.com^
+||trk.ksadating-3.com^
+||clk.egycam-2.com^
+||go.moroccodate-2.com^
+||trk.moroccocam-3.com^
+||click.tunisiadate-2.com^
+||go.algeriadate-3.com^
+||trk.jordandate-2.com^
+||clk.lebanoncam-3.com^
+||go.iraqdate-2.com^
+||trk.syriacam-3.com^
+||click.yemendate-2.com^
+||go.omandate-3.com^
+||trk.bahraincam-2.com^
+||clk.qatardate-3.com^
+||go.kuwaitcam-2.com^
+||trk.dubaidate-3.com^
+||click.gulfmatch-2.com^
+||go.mideastmatch-3.com^
+||trk.arabmatch-2.com^
+||clk.arablove-3.com^
+! SECTION 51: FINAL SUPPLEMENTARY COSMETIC RULES
+! --- Additional adult ad iframe selectors ---
+##iframe[class*="adult-ad"]
+##iframe[class*="adult_ad"]
+##iframe[class*="dating-ad"]
+##iframe[class*="dating_ad"]
+##iframe[class*="cam-ad"]
+##iframe[class*="cam_ad"]
+##iframe[id*="adult-ad"]
+##iframe[id*="adult_ad"]
+##iframe[id*="dating-ad"]
+##iframe[id*="dating_ad"]
+##iframe[id*="cam-ad"]
+##iframe[id*="cam_ad"]
+! --- Additional adult ad anchor selectors ---
+##a[class*="adult-ad"]
+##a[class*="adult_ad"]
+##a[class*="dating-ad"]
+##a[class*="dating_ad"]
+##a[class*="cam-ad"]
+##a[class*="cam_ad"]
+##a[id*="adult-ad"]
+##a[id*="adult_ad"]
+##a[id*="dating-ad"]
+##a[id*="dating_ad"]
+##a[id*="cam-ad"]
+##a[id*="cam_ad"]
+! --- Additional adult ad img selectors ---
+##img[class*="adult-ad"]
+##img[class*="adult_ad"]
+##img[class*="dating-ad"]
+##img[class*="dating_ad"]
+##img[class*="cam-ad"]
+##img[class*="cam_ad"]
+##img[alt*="Adult Ad"]
+##img[alt*="Dating Ad"]
+##img[alt*="Cam Ad"]
+! --- Additional adult ad span selectors ---
+##span[class*="adult-ad"]
+##span[class*="adult_ad"]
+##span[class*="dating-ad"]
+##span[class*="dating_ad"]
+##span[class*="cam-ad"]
+##span[class*="cam_ad"]
+! --- Additional adult ad section selectors ---
+##section[class*="adult-ad"]
+##section[class*="adult_ad"]
+##section[class*="dating-ad"]
+##section[class*="dating_ad"]
+##section[id*="adult-ad"]
+##section[id*="adult_ad"]
+##section[id*="dating-ad"]
+##section[id*="dating_ad"]
+! --- Additional adult ad article selectors ---
+##article[class*="adult-ad"]
+##article[class*="adult_ad"]
+##article[class*="dating-ad"]
+##article[class*="dating_ad"]
+##article[id*="adult-ad"]
+##article[id*="adult_ad"]
+##article[id*="dating-ad"]
+##article[id*="dating_ad"]
+! --- Additional adult ad aside selectors ---
+##aside[class*="adult-ad"]
+##aside[class*="adult_ad"]
+##aside[class*="dating-ad"]
+##aside[class*="dating_ad"]
+##aside[id*="adult-ad"]
+##aside[id*="adult_ad"]
+##aside[id*="dating-ad"]
+##aside[id*="dating_ad"]
+! SECTION 52: ADDITIONAL ADULT AD DATA ATTRIBUTE SELECTORS
+! --- Data attribute based adult ad detection ---
+##div[data-ad-type*="adult"]
+##div[data-ad-type*="dating"]
+##div[data-ad-type*="cam"]
+##div[data-ad-type*="nsfw"]
+##div[data-ad-type*="xxx"]
+##div[data-ad-type*="porn"]
+##div[data-ad-type*="sex"]
+##div[data-ad-category*="adult"]
+##div[data-ad-category*="dating"]
+##div[data-ad-category*="cam"]
+##div[data-ad-category*="nsfw"]
+##div[data-ad-label*="adult"]
+##div[data-ad-label*="dating"]
+##div[data-ad-label*="cam"]
+##div[data-ad-label*="nsfw"]
+##div[data-advertiser*="adult"]
+##div[data-advertiser*="dating"]
+##div[data-advertiser*="cam"]
+##div[data-advertiser*="nsfw"]
+##div[data-advertiser*="exoclick"]
+##div[data-advertiser*="juicyads"]
+##div[data-advertiser*="trafficstars"]
+##div[data-advertiser*="plugrush"]
+##div[data-advertiser*="eroadvertising"]
+! SECTION 53: ADDITIONAL ARABIC SITE ANTI-ADBLOCK SCRIPTS
+! --- Additional anti-adblock scripts for Arabic sites ---
+faselhd.com##+js(nosiif, adblock)
+faselhd.com##+js(nosiif, adBlock)
+faselhd.com##+js(nosiif, detectAdBlock)
+mycima.com##+js(nosiif, adblock)
+mycima.com##+js(nosiif, adBlock)
+mycima.com##+js(nosiif, detectAdBlock)
+cimaclub.com##+js(nosiif, adblock)
+cimaclub.com##+js(nosiif, adBlock)
+movs4u.com##+js(nosiif, adblock)
+movs4u.com##+js(nosiif, adBlock)
+arabseed.com##+js(nosiif, adblock)
+arabseed.com##+js(nosiif, adBlock)
+shahid4u.com##+js(nosiif, adblock)
+shahid4u.com##+js(nosiif, adBlock)
+akoam.com##+js(nosiif, adblock)
+akoam.com##+js(nosiif, adBlock)
+arab-lionz.com##+js(nosiif, adblock)
+arab-lionz.com##+js(nosiif, adBlock)
+koora.st##+js(nosiif, adblock)
+koora.st##+js(nosiif, adBlock)
+yalla-shoot.io##+js(nosiif, adblock)
+yalla-shoot.io##+js(nosiif, adBlock)
+! SECTION 54: ADDITIONAL ADULT AD OVERLAY SELECTORS
+! --- Full-screen overlay ad containers ---
+##div[class*="fullscreen-ad"]
+##div[class*="fullscreen_ad"]
+##div[class*="full-screen-ad"]
+##div[class*="full_screen_ad"]
+##div[class*="fullpage-overlay"]
+##div[class*="fullpage_overlay"]
+##div[id*="fullscreen-ad"]
+##div[id*="fullscreen_ad"]
+##div[id*="full-screen-ad"]
+##div[id*="full-screen_ad"]
+##div[id*="fullpage-overlay"]
+##div[id*="fullpage_overlay"]
+! --- Modal ad containers ---
+##div[class*="modal-ad"]
+##div[class*="modal_ad"]
+##div[class*="modalad"]
+##div[class*="ad-modal"]
+##div[class*="ad_modal"]
+##div[class*="admodal"]
+##div[class*="adult-modal"]
+##div[class*="adult_modal"]
+##div[class*="dating-modal"]
+##div[class*="dating_modal"]
+##div[id*="modal-ad"]
+##div[id*="modal_ad"]
+##div[id*="ad-modal"]
+##div[id*="ad_modal"]
+##div[id*="adult-modal"]
+##div[id*="adult_modal"]
+##div[id*="dating-modal"]
+##div[id*="dating_modal"]
+! SECTION 55: ADDITIONAL ARABIC-SPECIFIC DOMAIN RULES
+! --- More Arabic streaming domains with cosmetic rules ---
+cima4link.com##.ad-container
+cima4link.com##div[class*="ad-slot"]
+cima4link.com##iframe[src*="ad"]
+cima4link.com##.popup-overlay
+cima4link.com##ins[data-ad-slot]
+cimaleek.com##.ad-container
+cimaleek.com##div[class*="ad-slot"]
+cimaleek.com##iframe[src*="ad"]
+cimaleek.com##.popup-overlay
+cimaflash.com##.ad-container
+cimaflash.com##div[class*="ad-slot"]
+cimaflash.com##iframe[src*="ad"]
+cimaflash.com##.popup-overlay
+cima4ever.com##.ad-container
+cima4ever.com##div[class*="ad-slot"]
+cima4ever.com##iframe[src*="ad"]
+cima4ever.com##.popup-overlay
+aflamjo.com##.ad-container
+aflamjo.com##div[class*="ad-slot"]
+aflamjo.com##iframe[src*="ad"]
+aflamjo.com##.popup-overlay
+aflamhd.com##.ad-container
+aflamhd.com##div[class*="ad-slot"]
+aflamhd.com##iframe[src*="ad"]
+aflamhd.com##.popup-overlay
+aflamhot.com##.ad-container
+aflamhot.com##div[class*="ad-slot"]
+aflamhot.com##iframe[src*="ad"]
+aflamhot.com##.popup-overlay
+aflammix.com##.ad-container
+aflammix.com##div[class*="ad-slot"]
+aflammix.com##iframe[src*="ad"]
+aflammix.com##.popup-overlay
+aflamnext.com##.ad-container
+aflamnext.com##div[class*="ad-slot"]
+aflamnext.com##iframe[src*="ad"]
+aflamnext.com##.popup-overlay
+aflampop.com##.ad-container
+aflampop.com##div[class*="ad-slot"]
+aflampop.com##iframe[src*="ad"]
+aflampop.com##.popup-overlay
 ! This filter list contains 2000+ cosmetic + regional rules
 ! targeting adult ad elements visible on Arabic/Middle-East
 ! websites. It is a PROTECTIVE filter designed to hide
@@ -10814,8 +12924,6 @@ shabakatv.com##.popup-overlay
 !  19. Android WebView Ad Injection Domains
 !  20. General Mobile Adult Ad Infrastructure
 ! SECTION 1: ExoClick Mobile SDK & Domains
-||exoclick.com^$xmlhttprequest,third-party
-||exoclick.com^$websocket,third-party
 ||exoclick.bamboohr.co.uk^
 ||exoclick.kayako.com^
 ||exoapp.com^$third-party
@@ -10823,7 +12931,6 @@ shabakatv.com##.popup-overlay
 ||exopush.com^$third-party
 ||exomobi.com^$third-party
 ||exosrv.com^$popup,third-party
-||exosrv.com^$xmlhttprequest,third-party
 ||exonb.com^$third-party,script
 ||exonob.com^$third-party,script
 ||exowb.com^$third-party,script
@@ -10887,8 +12994,6 @@ shabakatv.com##.popup-overlay
 /exoads/*$script,third-party
 ! SECTION 2: TrafficJunky Mobile & Adult
 ||trafficjunky.com^$popup,third-party
-||trafficjunky.com^$xmlhttprequest,third-party
-||trafficjunky.com^$websocket,third-party
 ||trafficjunky.org^$third-party
 ||trafficjunky.co^$third-party
 ||trafficjunky.io^$third-party
@@ -10942,8 +13047,6 @@ shabakatv.com##.popup-overlay
 ||trafficjunkypixel.com^$third-party
 ||trafficjunkypixel.net^$third-party
 ! SECTION 3: HillTopAds Mobile & Adult
-||hilltopads.com^$xmlhttprequest,third-party
-||hilltopads.com^$websocket,third-party
 ||hilltopads.co^$third-party
 ||hilltopads.info^$third-party
 ||hilltopads.tv^$third-party
@@ -11002,8 +13105,6 @@ shabakatv.com##.popup-overlay
 ||htapixel.net^$third-party
 ! SECTION 4: ClickAdu Mobile & Adult
 ||clickadu.com^$popup,third-party
-||clickadu.com^$xmlhttprequest,third-party
-||clickadu.com^$websocket,third-party
 ||clickadu.co^$third-party
 ||clickadu.info^$third-party
 ||clickadu.biz^$third-party
@@ -11057,8 +13158,6 @@ shabakatv.com##.popup-overlay
 /t/9/heis/svewg/*$third-party
 .com/src/ppu/$third-party
 ! SECTION 5: PropellerAds Mobile Push & Adult
-||propellerads.com^$xmlhttprequest,third-party
-||propellerads.com^$websocket,third-party
 ||propellerads.co^$third-party
 ||propellerads.io^$third-party
 ||propellerads.mobi^$third-party
@@ -11583,7 +13682,6 @@ shabakatv.com##.popup-overlay
 ||pop-under.mobi^$third-party
 ||pop-under.io^$third-party
 ||popads.net^$popup,third-party
-||popads.net^$xmlhttprequest,third-party
 ||popads.com^$popup,third-party
 ||popads.com^$script,third-party
 ||popads.mobi^$third-party
@@ -11592,7 +13690,6 @@ shabakatv.com##.popup-overlay
 ||popad.com^$third-party
 ||popad.net^$third-party
 ||popad.mobi^$third-party
-||popcash.net^$xmlhttprequest,third-party
 ||popcash.com^$popup,third-party
 ||popcash.com^$script,third-party
 ||popcash.mobi^$third-party
@@ -12726,8 +14823,6 @@ shabakatv.com##.popup-overlay
 ||creativcdn.org^$third-party
 ||creativcdn.io^$third-party
 ! SECTION 24: Additional Mobile Adult Ad Networks
-||trafficstars.com^$xmlhttprequest,third-party
-||trafficstars.com^$websocket,third-party
 ||trafficstars.net^$third-party
 ||trafficstars.org^$third-party
 ||trafficstars.io^$third-party
@@ -12748,12 +14843,9 @@ shabakatv.com##.popup-overlay
 ||adxpansion.org^$third-party
 ||adxpansion.io^$third-party
 ||ero-advertising.com^$popup,third-party
-||ero-advertising.com^$xmlhttprequest,third-party
 ||ero-advertising.net^$third-party
 ||ero-advertising.org^$third-party
 ||ero-advertising.io^$third-party
-||eroadvertising.com^$xmlhttprequest,third-party
-||trafficfactory.biz^$xmlhttprequest,third-party
 ||traffichaus.com^$third-party
 ||traffichaus.com^$script,third-party
 ||traffichaus.com^$xmlhttprequest,third-party
@@ -12767,9 +14859,7 @@ shabakatv.com##.popup-overlay
 ||trafficshop.net^$third-party
 ||trafficshop.org^$third-party
 ||trafficshop.io^$third-party
-||plugrush.com^$xmlhttprequest,third-party
 ||adsterra.com^$popup,third-party
-||adsterra.com^$xmlhttprequest,third-party
 ||adsterratop.com^$third-party
 ||adsterratop.net^$third-party
 ||adsterratop.org^$third-party
@@ -12784,7 +14874,6 @@ shabakatv.com##.popup-overlay
 ||evadav.io^$third-party
 ||hilltopads.net^$popup,third-party
 ||hilltopads.net^$script,third-party
-||juicyads.com^$xmlhttprequest,third-party
 ||juicyad.com^$third-party
 ||juicyad.net^$third-party
 ||juicyad.org^$third-party
@@ -15525,3 +17614,473 @@ shabakatv.com##.popup-overlay
 ||mediagamble.net^$third-party
 ||gamble-ad.com^$third-party
 ||gamble-ad.net^$third-party
+! CATEGORY 29: URL Shortener Gambling Redirects
+||casinoshort.com^$third-party
+||gamblingshort.com^$third-party
+||bettingshort.com^$third-party
+||slotshort.com^$third-party
+||pokershort.com^$third-party
+||sportsshort.com^$third-party
+||casinolinkshort.com^$third-party
+||gamblinglinkshort.com^$third-party
+||bettinglinkshort.com^$third-party
+||slotlinkshort.com^$third-party
+||pokerlinkshort.com^$third-party
+||sportslinkshort.com^$third-party
+! CATEGORY 30: Gambling Data/Analytics & Retargeting
+||casinoanalytics.com^$third-party
+||gamblinganalytics.com^$third-party
+||bettinganalytics.com^$third-party
+||slotanalytics.com^$third-party
+||pokeranalytics.com^$third-party
+||sportsanalytics.com^$third-party
+||casinoretarg.com^$third-party
+||gamblingretarg.com^$third-party
+||bettingretarg.com^$third-party
+||slotretarg.com^$third-party
+||pokerretarg.com^$third-party
+||sportsretarg.com^$third-party
+||casinoretargeting.com^$third-party
+||gamblingretargeting.com^$third-party
+||bettingretargeting.com^$third-party
+||slotretargeting.com^$third-party
+||pokerretargeting.com^$third-party
+||sportsretargeting.com^$third-party
+||casinodata.com^$third-party
+||gamblingdata.com^$third-party
+||bettingdata.com^$third-party
+||slotdata.com^$third-party
+||pokerdata.com^$third-party
+||sportsdata.com^$third-party
+||casinostats.com^$third-party
+||gamblingstats.com^$third-party
+||bettingstats.com^$third-party
+||slotstats.com^$third-party
+||pokerstats.com^$third-party
+||sportsstats.com^$third-party
+||casinoreport.com^$third-party
+||gamblingreport.com^$third-party
+||bettingreport.com^$third-party
+||slotreport.com^$third-party
+||pokerreport.com^$third-party
+||sportsreport.com^$third-party
+||casino-rtb.com^$third-party
+||gambling-rtb.com^$third-party
+||betting-rtb.com^$third-party
+||slot-rtb.com^$third-party
+||poker-rtb.com^$third-party
+||sports-rtb.com^$third-party
+||casino-ssp.com^$third-party
+||gambling-ssp.com^$third-party
+||betting-ssp.com^$third-party
+||slot-ssp.com^$third-party
+||poker-ssp.com^$third-party
+||sports-ssp.com^$third-party
+||casino-dsp.com^$third-party
+||gambling-dsp.com^$third-party
+||betting-dsp.com^$third-party
+||slot-dsp.com^$third-party
+||poker-dsp.com^$third-party
+||sports-dsp.com^$third-party
+||igaming-rtb.com^$third-party
+||igaming-ssp.com^$third-party
+||igaming-dsp.com^$third-party
+||egaming-rtb.com^$third-party
+||egaming-ssp.com^$third-party
+||egaming-dsp.com^$third-party
+! CATEGORY 31: URL Pattern-Based Gambling Ad Blocking
+/casino-banner/*$third-party
+/casino-ads/*$third-party
+/casino-popup/*$third-party
+/casino-popunder/*$third-party
+/casino-redirect/*$third-party
+/casino-tracking/*$third-party
+/casino-pixel/*$third-party
+/casino-creative/*$third-party
+/casino-promo/*$third-party
+/casino-offer/*$third-party
+/gambling-banner/*$third-party
+/gambling-ads/*$third-party
+/gambling-popup/*$third-party
+/gambling-popunder/*$third-party
+/gambling-redirect/*$third-party
+/gambling-tracking/*$third-party
+/gambling-pixel/*$third-party
+/gambling-creative/*$third-party
+/gambling-promo/*$third-party
+/gambling-offer/*$third-party
+/betting-banner/*$third-party
+/betting-ads/*$third-party
+/betting-popup/*$third-party
+/betting-popunder/*$third-party
+/betting-redirect/*$third-party
+/betting-tracking/*$third-party
+/betting-pixel/*$third-party
+/betting-creative/*$third-party
+/betting-promo/*$third-party
+/betting-offer/*$third-party
+/slot-banner/*$third-party
+/slot-ads/*$third-party
+/slot-popup/*$third-party
+/slot-popunder/*$third-party
+/slot-redirect/*$third-party
+/slot-tracking/*$third-party
+/slot-pixel/*$third-party
+/slot-creative/*$third-party
+/slot-promo/*$third-party
+/slot-offer/*$third-party
+/poker-banner/*$third-party
+/poker-ads/*$third-party
+/poker-popup/*$third-party
+/poker-popunder/*$third-party
+/poker-redirect/*$third-party
+/poker-tracking/*$third-party
+/poker-pixel/*$third-party
+/poker-creative/*$third-party
+/poker-promo/*$third-party
+/poker-offer/*$third-party
+/sportsbook-banner/*$third-party
+/sportsbook-ads/*$third-party
+/sportsbook-popup/*$third-party
+/sportsbook-popunder/*$third-party
+/sportsbook-redirect/*$third-party
+/sportsbook-tracking/*$third-party
+/sportsbook-pixel/*$third-party
+/sportsbook-creative/*$third-party
+/sportsbook-promo/*$third-party
+/sportsbook-offer/*$third-party
+/1xbet-banner/*$third-party
+/1xbet-ads/*$third-party
+/1xbet-popup/*$third-party
+/1xbet-popunder/*$third-party
+/1xbet-redirect/*$third-party
+/1xbet-tracking/*$third-party
+/1xbet-pixel/*$third-party
+/1xbet-creative/*$third-party
+/1xbet-promo/*$third-party
+/1xbet-offer/*$third-party
+/bet365-banner/*$third-party
+/bet365-ads/*$third-party
+/bet365-popup/*$third-party
+/bet365-popunder/*$third-party
+/bet365-redirect/*$third-party
+/bet365-tracking/*$third-party
+/bet365-pixel/*$third-party
+/bet365-creative/*$third-party
+/bet365-promo/*$third-party
+/bet365-offer/*$third-party
+/1win-banner/*$third-party
+/1win-ads/*$third-party
+/1win-popup/*$third-party
+/1win-popunder/*$third-party
+/1win-redirect/*$third-party
+/1win-tracking/*$third-party
+/1win-pixel/*$third-party
+/1win-creative/*$third-party
+/1win-promo/*$third-party
+/1win-offer/*$third-party
+/pinup-banner/*$third-party
+/pinup-ads/*$third-party
+/pinup-popup/*$third-party
+/pinup-popunder/*$third-party
+/pinup-redirect/*$third-party
+/pinup-tracking/*$third-party
+/pinup-pixel/*$third-party
+/pinup-creative/*$third-party
+/pinup-promo/*$third-party
+/pinup-offer/*$third-party
+/mostbet-banner/*$third-party
+/mostbet-ads/*$third-party
+/mostbet-popup/*$third-party
+/mostbet-popunder/*$third-party
+/mostbet-redirect/*$third-party
+/mostbet-tracking/*$third-party
+/mostbet-pixel/*$third-party
+/mostbet-creative/*$third-party
+/mostbet-promo/*$third-party
+/mostbet-offer/*$third-party
+/vulkan-banner/*$third-party
+/vulkan-ads/*$third-party
+/vulkan-popup/*$third-party
+/vulkan-popunder/*$third-party
+/vulkan-redirect/*$third-party
+/vulkan-tracking/*$third-party
+/vulkan-pixel/*$third-party
+/vulkan-creative/*$third-party
+/vulkan-promo/*$third-party
+/vulkan-offer/*$third-party
+! CATEGORY 32: Element Hiding Rules - Gambling Ad Containers
+###casino-ad-container
+###casino-ad-banner
+###casino-ad-wrapper
+###casino-ad-slot
+###casino-ad-unit
+###casino-ad-box
+###casino-ad-frame
+###casino-ad-iframe
+###casino-ad-placeholder
+###casino-ad-leaderboard
+###casino-ad-rectangle
+###casino-ad-sidebar
+###casino-ad-footer
+###casino-ad-header
+###casino-ad-top
+###casino-ad-bottom
+###casino-ad-right
+###casino-ad-left
+###casino-ad-middle
+###casino-ad-center
+###casino-ad-inline
+###casino-ad-overlay
+###casino-ad-popup
+###casino-ad-popunder
+###casino-ad-interstitial
+###casino-ad-native
+###casino-ad-sponsored
+###casino-ad-promoted
+###casino-ad-widget
+###casino-ad-300x250
+###casino-ad-728x90
+###casino-ad-160x600
+###casino-ad-970x90
+###casino-ad-320x50
+###gambling-ad-container
+###gambling-ad-banner
+###gambling-ad-wrapper
+###gambling-ad-slot
+###gambling-ad-unit
+###gambling-ad-box
+###gambling-ad-frame
+###gambling-ad-iframe
+###gambling-ad-placeholder
+###gambling-ad-leaderboard
+###gambling-ad-rectangle
+###gambling-ad-sidebar
+###gambling-ad-footer
+###gambling-ad-header
+###gambling-ad-top
+###gambling-ad-bottom
+###gambling-ad-right
+###gambling-ad-left
+###gambling-ad-middle
+###gambling-ad-center
+###gambling-ad-inline
+###gambling-ad-overlay
+###gambling-ad-popup
+###gambling-ad-popunder
+###gambling-ad-interstitial
+###gambling-ad-native
+###gambling-ad-sponsored
+###gambling-ad-promoted
+###gambling-ad-widget
+###gambling-ad-300x250
+###gambling-ad-728x90
+###gambling-ad-160x600
+###gambling-ad-970x90
+###gambling-ad-320x50
+###betting-ad-container
+###betting-ad-banner
+###betting-ad-wrapper
+###betting-ad-slot
+###betting-ad-unit
+###betting-ad-box
+###betting-ad-frame
+###betting-ad-iframe
+###betting-ad-placeholder
+###betting-ad-leaderboard
+###betting-ad-rectangle
+###betting-ad-sidebar
+###betting-ad-footer
+###betting-ad-header
+###betting-ad-top
+###betting-ad-bottom
+###betting-ad-right
+###betting-ad-left
+###betting-ad-middle
+###betting-ad-center
+###betting-ad-inline
+###betting-ad-overlay
+###betting-ad-popup
+###betting-ad-popunder
+###betting-ad-interstitial
+###betting-ad-native
+###betting-ad-sponsored
+###betting-ad-promoted
+###betting-ad-widget
+###slot-ad-container
+###slot-ad-banner
+###slot-ad-wrapper
+###slot-ad-slot
+###slot-ad-unit
+###slot-ad-box
+###slot-ad-frame
+###slot-ad-iframe
+###slot-ad-placeholder
+###slot-ad-leaderboard
+###slot-ad-rectangle
+###slot-ad-sidebar
+###slot-ad-footer
+###slot-ad-header
+###slot-ad-top
+###slot-ad-bottom
+###poker-ad-container
+###poker-ad-banner
+###poker-ad-wrapper
+###poker-ad-slot
+###poker-ad-unit
+###poker-ad-box
+###poker-ad-frame
+###poker-ad-iframe
+###poker-ad-placeholder
+###poker-ad-leaderboard
+###poker-ad-rectangle
+###poker-ad-sidebar
+###poker-ad-footer
+###poker-ad-header
+###poker-ad-top
+###poker-ad-bottom
+###sportsbook-ad-container
+###sportsbook-ad-banner
+###sportsbook-ad-wrapper
+###sportsbook-ad-slot
+###sportsbook-ad-unit
+###sportsbook-ad-box
+###sportsbook-ad-frame
+###sportsbook-ad-iframe
+###sportsbook-ad-placeholder
+###sportsbook-ad-leaderboard
+###sportsbook-ad-rectangle
+###sportsbook-ad-sidebar
+###sportsbook-ad-footer
+###sportsbook-ad-header
+###sportsbook-ad-top
+###sportsbook-ad-bottom
+##.casino-ad-container
+##.casino-ad-banner
+##.casino-ad-wrapper
+##.casino-ad-slot
+##.casino-ad-unit
+##.casino-ad-box
+##.casino-ad-frame
+##.casino-ad-placeholder
+##.casino-ad-leaderboard
+##.casino-ad-rectangle
+##.casino-ad-sidebar
+##.casino-ad-footer
+##.casino-ad-header
+##.casino-ad-top
+##.casino-ad-bottom
+##.casino-ad-right
+##.casino-ad-left
+##.casino-ad-middle
+##.casino-ad-center
+##.casino-ad-inline
+##.casino-ad-overlay
+##.casino-ad-popup
+##.casino-ad-popunder
+##.casino-ad-interstitial
+##.casino-ad-native
+##.casino-ad-sponsored
+##.casino-ad-promoted
+##.casino-ad-widget
+##.gambling-ad-container
+##.gambling-ad-banner
+##.gambling-ad-wrapper
+##.gambling-ad-slot
+##.gambling-ad-unit
+##.gambling-ad-box
+##.gambling-ad-frame
+##.gambling-ad-placeholder
+##.gambling-ad-leaderboard
+##.gambling-ad-rectangle
+##.gambling-ad-sidebar
+##.gambling-ad-footer
+##.gambling-ad-header
+##.gambling-ad-top
+##.gambling-ad-bottom
+##.gambling-ad-right
+##.gambling-ad-left
+##.gambling-ad-middle
+##.gambling-ad-center
+##.gambling-ad-inline
+##.gambling-ad-overlay
+##.gambling-ad-popup
+##.gambling-ad-popunder
+##.gambling-ad-interstitial
+##.gambling-ad-native
+##.gambling-ad-sponsored
+##.gambling-ad-promoted
+##.gambling-ad-widget
+##.betting-ad-container
+##.betting-ad-banner
+##.betting-ad-wrapper
+##.betting-ad-slot
+##.betting-ad-unit
+##.betting-ad-box
+##.betting-ad-frame
+##.betting-ad-placeholder
+##.betting-ad-leaderboard
+##.betting-ad-rectangle
+##.betting-ad-sidebar
+##.betting-ad-footer
+##.betting-ad-header
+##.betting-ad-top
+##.betting-ad-bottom
+##.betting-ad-right
+##.betting-ad-left
+##.betting-ad-middle
+##.betting-ad-center
+##.betting-ad-inline
+##.betting-ad-overlay
+##.betting-ad-popup
+##.betting-ad-popunder
+##.betting-ad-interstitial
+##.betting-ad-native
+##.betting-ad-sponsored
+##.betting-ad-promoted
+##.betting-ad-widget
+##.slot-ad-container
+##.slot-ad-banner
+##.slot-ad-wrapper
+##.slot-ad-slot
+##.slot-ad-unit
+##.slot-ad-box
+##.slot-ad-frame
+##.slot-ad-placeholder
+##.slot-ad-leaderboard
+##.slot-ad-rectangle
+##.slot-ad-sidebar
+##.slot-ad-footer
+##.slot-ad-header
+##.slot-ad-top
+##.slot-ad-bottom
+##.poker-ad-container
+##.poker-ad-banner
+##.poker-ad-wrapper
+##.poker-ad-slot
+##.poker-ad-unit
+##.poker-ad-box
+##.poker-ad-frame
+##.poker-ad-placeholder
+##.poker-ad-leaderboard
+##.poker-ad-rectangle
+##.poker-ad-sidebar
+##.poker-ad-footer
+##.poker-ad-header
+##.poker-ad-top
+##.poker-ad-bottom
+##.sportsbook-ad-container
+##.sportsbook-ad-banner
+##.sportsbook-ad-wrapper
+##.sportsbook-ad-slot
+##.sportsbook-ad-unit
+##.sportsbook-ad-box
+##.sportsbook-ad-frame
+##.sportsbook-ad-placeholder
+##.sportsbook-ad-leaderboard
+##.sportsbook-ad-rectangle
+##.sportsbook-ad-sidebar
+##.sportsbook-ad-footer
+##.sportsbook-ad-header
+##.sportsbook-ad-top
+##.sportsbook-ad-bottom

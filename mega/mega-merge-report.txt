@@ -1,34 +1,34 @@
 # تقرير الدمج النهائي — Ayon 1DM+ MEGA Ultimate Adult Ad Blocker
-# Generated: 2026-04-13 15:27 UTC
+# Generated: 2026-04-13 16:00 UTC
 
 ## المصادر
-- agent1-major-networks.txt: 52KB
+- agent1-major-networks.txt: 107KB
 - agent2-webcam-dating-affiliate.txt: 88KB
 - agent3-malvertising-redirects.txt: 76KB
 - agent4-cdn-infrastructure.txt: 104KB
-- agent5-cosmetic-arabic.txt: 103KB
+- agent5-cosmetic-arabic.txt: 127KB
 - agent6-push-mobile.txt: 95KB
-- agent7-casino-gambling.txt: 65KB
+- agent7-casino-gambling.txt: 77KB
 
 ## الإحصائيات
 
 | المؤشر | القيمة |
 |---|---|
-| إجمالي الأسطر المُدخلة | 20341 |
-| قواعد الحجب (||domain^) | 10720 |
-| قواعد الإخفاء التجميلي (##) | 1695 |
+| إجمالي الأسطر المُدخلة | 23754 |
+| قواعد الحجب (||domain^) | 11913 |
+| قواعد الإخفاء التجميلي (##) | 1984 |
 | قواعد الاستثناء (@@) | 0 |
-| أنماط URL ($popup, $redirect) | 1096 |
-| تعليقات وأقسام | 1996 |
-| **إجمالي القواعد الفريدة** | **13511** |
-| تكرارات مُزالة | 1567 |
+| أنماط URL ($popup, $redirect) | 1335 |
+| تعليقات وأقسام | 2834 |
+| **إجمالي القواعد الفريدة** | **15232** |
+| تكرارات مُزالة | 2040 |
 | تعارضات مدمجة مُزالة | 665 |
-| قواعد غير صالحة مُتخطاة | 1987 |
-| نطاقات فريدة لقائمة Hosts | 9844 |
+| قواعد غير صالحة مُتخطاة | 2219 |
+| نطاقات فريدة لقائمة Hosts | 10934 |
 
 ## الملفات النهائية
 
 | الملف | الحجم | القواعد |
 |---|---|---|
-| 1dm-mega-ultimate-adblock.txt | 444KB | 13511 |
-| 1dm-mega-hosts-blocklist.txt | 232KB | 9844 |
+| 1dm-mega-ultimate-adblock.txt | 510KB | 15232 |
+| 1dm-mega-hosts-blocklist.txt | 261KB | 10934 |
