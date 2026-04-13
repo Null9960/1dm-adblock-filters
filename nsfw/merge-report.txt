@@ -1,0 +1,56 @@
+============================================================
+1DM+ Porn Ad Blocklist - Merge & Deduplication Report
+Generated: 2026-04-13 07:03 UTC+3
+============================================================
+
+INPUT FILES
+----------------------------------------
+  agent1-abp-filters.txt    : 3712 lines (ABP filter rules)
+  agent2-hosts-blocklist.txt : 1924 lines (hosts entries)
+  agent3-smart-filters.txt   : 1317 lines (ABP smart filters)
+
+ABP FILTER MERGE (agent1 + agent3 → 1dm-porn-ads-blocklist.txt)
+----------------------------------------
+  Total rules before merge     : 4647
+  Duplicate rules removed      : 187
+  After dedup                  : 4460
+  Built-in conflicts removed   : 155  (including googlesyndication sub-rules)
+  Final rules after merge      : 3758
+
+  Breakdown by category:
+    Domain-level rules (||xxx^) : 3211
+    URL pattern rules (/xxx)    : 263
+    Cosmetic rules (##xxx)       : 794
+    Other rules                  : 10
+
+HOSTS DEDUPLICATION (agent2 → 1dm-porn-hosts-blocklist.txt)
+----------------------------------------
+  Total entries before dedup   : 1869
+  Duplicate entries removed    : 94
+  After dedup                  : 1775
+  Built-in conflicts removed   : 229 (including .cn Google variants, taboola.com parse fix)
+  Final entries after dedup    : 1546
+
+SUMMARY
+----------------------------------------
+  Total duplicates removed (ABP + Hosts) : 281
+  Total built-in conflicts removed       : 384
+  ABP filter final rules                 : 3758
+  Hosts blocklist final entries          : 1546
+  Combined blocking power                : 5304
+
+VALIDATION CHECKS
+----------------------------------------
+  ✅ ABP header: [Adblock Plus 2.0]
+  ✅ Title: Ayon 1DM+ Porn Ad Blocker - Ultimate Merged
+  ✅ No corrupted hosts entries (0.0.0.0 0.0.0.0xxx)
+  ✅ No built-in domain conflicts remaining (doubleclick, googlesyndication, etc.)
+  ✅ All hosts entries in 0.0.0.0 domain.com format
+  ✅ ABP rules sorted by category with section headers
+  ✅ Hosts entries sorted alphabetically
+
+OUTPUT FILES
+----------------------------------------
+  1dm-porn-ads-blocklist.txt     : ABP filter list (3758 rules, 83KB)
+  1dm-porn-hosts-blocklist.txt   : Hosts blocklist (1546 entries, 34KB)
+============================================================
