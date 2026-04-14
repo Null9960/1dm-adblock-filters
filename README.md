@@ -1,9 +1,16 @@
-# هذا الأمر مهم
 # 1DM+ Adblock Filters by Ayon
 
 > قوائم حظر إعلانات مُحسّنة خصيصاً لمتصفح 1DM+ على أندرويد
 
 ## 📂 الملفات
+
+### 🎬 قوائم حظر إعلانات ما قبل الفيديو (mega/)
+| الملف | الوصف | عدد القواعد |
+|---|---|---|
+| `1dm-video-preroll-killer.txt` | **548,000+** قاعدة — حظر شامل لإعلانات الفيديو (pre-roll/mid-roll/post-roll) + ourdream.ai | ~548,000 |
+| `1dm-video-preroll-hosts.txt` | قائمة Hosts — حظر DNS لـ 54,000+ نطاق إعلاني | ~54,600 |
+| `1dm-mega-ultimate-adblock.txt` | قائمة MEGA شاملة (سابقة) | ~12,000 |
+| `1dm-mega-hosts-blocklist.txt` | قائمة Hosts MEGA (سابقة) | ~9,300 |
 
 ### قوائم عامة (general/)
 | الملف | الوصف | عدد القواعد |
@@ -27,6 +34,8 @@
    - Hosts العام: `https://raw.githubusercontent.com/Null9960/1dm-adblock-filters/main/general/1dm-ultimate-hosts.txt`
    - NSFW ABP: `https://raw.githubusercontent.com/Null9960/1dm-adblock-filters/main/nsfw/1dm-porn-ads-blocklist.txt`
    - NSFW Hosts: `https://raw.githubusercontent.com/Null9960/1dm-adblock-filters/main/nsfw/1dm-porn-hosts-blocklist.txt`
+   - 🎬 **Pre-Roll Killer**: `https://raw.githubusercontent.com/Null9960/1dm-adblock-filters/main/mega/1dm-video-preroll-killer.txt`
+   - 🎬 Pre-Roll Hosts: `https://raw.githubusercontent.com/Null9960/1dm-adblock-filters/main/mega/1dm-video-preroll-hosts.txt`
 3. فعّل التحديث التلقائي
 
 > 📖 تفاصيل أكثر في [دليل التركيب](general/1dm-install-guide.md)
@@ -48,4 +57,4 @@ CC BY-SA 4.0 — استخدم وعدّل بحرية مع ذكر المصدر
 
 ---
 
-*أنشئ بواسطة ايون (Ayon) — 2026-04-13*
+*أنشئ بواسطة ايون (Ayon) — آخر تحديث 2026-04-14*
